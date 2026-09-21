@@ -2401,6 +2401,23 @@ body{background:var(--warm-white);color:var(--brown-dark)}
 .tercera-seccion{background:radial-gradient(circle at top left,rgba(149,149,104,.15),transparent 32%),radial-gradient(circle at bottom right,rgba(128,103,74,.11),transparent 30%),var(--warm-white)}
 </style>
 
+
+<style>
+/* Nicole & Pablo V2 · ramas finas */
+.portada .floral { color:#6b6b32; opacity:.90; }
+.portada .floral .tallo { stroke-width:1.25; }
+.portada .floral .rama { stroke-width:1.05; }
+.portada .floral .hoja { opacity:0; }
+@media (min-width:761px){
+  .floral-arriba-derecha{width:230px;height:600px;right:-18px;top:-45px;}
+  .floral-abajo-izquierda{width:230px;height:600px;left:-18px;bottom:-55px;}
+}
+@media (max-width:760px){
+  .floral-arriba-derecha{width:150px;height:410px;right:-34px;top:-35px;}
+  .floral-abajo-izquierda{width:150px;height:410px;left:-34px;bottom:-40px;}
+}
+</style>
+
 </head>
 
 <body>
@@ -2425,47 +2442,55 @@ body{background:var(--warm-white);color:var(--brown-dark)}
   <div class="linea-vertical linea-derecha"></div>
 
   <div class="floral floral-arriba-derecha">
-    <svg viewBox="0 0 280 620">
-      <path class="tallo" d="M262 0 C245 70 232 130 217 185 C197 260 174 322 143 392 C115 455 84 525 44 620" />
-      <path class="rama rama-1" d="M231 132 C205 118 186 97 172 73" />
-      <path class="rama rama-2" d="M214 198 C240 178 254 154 262 126" />
-      <path class="rama rama-3" d="M190 282 C160 260 139 236 124 205" />
-      <path class="rama rama-4" d="M163 348 C193 332 216 306 228 275" />
-      <path class="rama rama-5" d="M124 438 C94 418 74 394 58 365" />
-      <path class="rama rama-6" d="M86 522 C111 509 130 489 145 462" />
-      <ellipse class="hoja hoja-1" cx="182" cy="88" rx="9" ry="21" />
-      <ellipse class="hoja hoja-2" cx="216" cy="122" rx="10" ry="23" />
-      <ellipse class="hoja hoja-3" cx="248" cy="160" rx="9" ry="20" />
-      <ellipse class="hoja hoja-4" cx="145" cy="246" rx="11" ry="25" />
-      <ellipse class="hoja hoja-5" cx="213" cy="305" rx="11" ry="24" />
-      <ellipse class="hoja hoja-6" cx="178" cy="343" rx="9" ry="21" />
-      <ellipse class="hoja hoja-7" cx="79" cy="397" rx="11" ry="25" />
-      <ellipse class="hoja hoja-8" cx="126" cy="447" rx="10" ry="23" />
-      <ellipse class="hoja hoja-9" cx="128" cy="488" rx="10" ry="22" />
-      <ellipse class="hoja hoja-10" cx="68" cy="548" rx="9" ry="21" />
-    </svg>
+    
+<svg viewBox="0 0 300 620" aria-hidden="true">
+  <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+    <path class="tallo" d="M258 612 C238 532 212 468 188 394 C161 311 145 226 102 118 C85 75 69 39 54 8"/>
+    <path class="rama rama-1" d="M218 500 C244 472 258 444 266 410"/>
+    <path class="rama rama-2" d="M192 407 C222 385 240 355 248 322"/>
+    <path class="rama rama-3" d="M163 310 C188 284 201 255 205 222"/>
+    <path class="rama rama-4" d="M134 226 C110 203 93 178 81 147"/>
+    <path class="rama rama-5" d="M102 138 C126 116 139 93 145 66"/>
+  </g>
+  <g fill="currentColor">
+    <ellipse class="hoja hoja-1" cx="266" cy="407" rx="5" ry="13" transform="rotate(28 266 407)"/>
+    <ellipse class="hoja hoja-2" cx="248" cy="322" rx="5" ry="13" transform="rotate(30 248 322)"/>
+    <ellipse class="hoja hoja-3" cx="205" cy="222" rx="5" ry="13" transform="rotate(22 205 222)"/>
+    <ellipse class="hoja hoja-4" cx="81" cy="147" rx="5" ry="13" transform="rotate(-34 81 147)"/>
+    <ellipse class="hoja hoja-5" cx="145" cy="66" rx="5" ry="13" transform="rotate(28 145 66)"/>
+    <ellipse class="hoja hoja-6" cx="186" cy="390" rx="5" ry="13" transform="rotate(-26 186 390)"/>
+    <ellipse class="hoja hoja-7" cx="158" cy="294" rx="5" ry="13" transform="rotate(-30 158 294)"/>
+    <ellipse class="hoja hoja-8" cx="127" cy="209" rx="5" ry="13" transform="rotate(30 127 209)"/>
+    <ellipse class="hoja hoja-9" cx="99" cy="126" rx="5" ry="13" transform="rotate(-28 99 126)"/>
+    <ellipse class="hoja hoja-10" cx="64" cy="30" rx="5" ry="13" transform="rotate(-24 64 30)"/>
+  </g>
+</svg>
   </div>
 
   <div class="floral floral-abajo-izquierda">
-    <svg viewBox="0 0 280 620">
-      <path class="tallo" d="M18 620 C40 545 58 485 75 430 C97 360 120 300 145 240 C170 178 197 110 235 0" />
-      <path class="rama rama-1" d="M58 487 C30 470 16 447 8 420" />
-      <path class="rama rama-2" d="M79 419 C108 402 127 378 140 349" />
-      <path class="rama rama-3" d="M111 328 C79 306 58 281 45 250" />
-      <path class="rama rama-4" d="M145 241 C174 224 193 201 206 172" />
-      <path class="rama rama-5" d="M179 155 C150 134 132 111 120 83" />
-      <path class="rama rama-6" d="M205 82 C226 67 240 48 250 26" />
-      <ellipse class="hoja hoja-1" cx="23" cy="438" rx="10" ry="23" />
-      <ellipse class="hoja hoja-2" cx="98" cy="396" rx="11" ry="24" />
-      <ellipse class="hoja hoja-3" cx="124" cy="362" rx="9" ry="20" />
-      <ellipse class="hoja hoja-4" cx="65" cy="283" rx="11" ry="25" />
-      <ellipse class="hoja hoja-5" cx="180" cy="210" rx="10" ry="23" />
-      <ellipse class="hoja hoja-6" cx="154" cy="153" rx="10" ry="22" />
-      <ellipse class="hoja hoja-7" cx="130" cy="110" rx="9" ry="21" />
-      <ellipse class="hoja hoja-8" cx="221" cy="63" rx="10" ry="23" />
-      <ellipse class="hoja hoja-9" cx="244" cy="38" rx="8" ry="18" />
-      <ellipse class="hoja hoja-10" cx="44" cy="522" rx="10" ry="22" />
-    </svg>
+    
+<svg viewBox="0 0 300 620" aria-hidden="true">
+  <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+    <path class="tallo" d="M42 612 C62 532 88 468 112 394 C139 311 155 226 198 118 C215 75 231 39 246 8"/>
+    <path class="rama rama-1" d="M82 500 C56 472 42 444 34 410"/>
+    <path class="rama rama-2" d="M108 407 C78 385 60 355 52 322"/>
+    <path class="rama rama-3" d="M137 310 C112 284 99 255 95 222"/>
+    <path class="rama rama-4" d="M166 226 C190 203 207 178 219 147"/>
+    <path class="rama rama-5" d="M198 138 C174 116 161 93 155 66"/>
+  </g>
+  <g fill="currentColor">
+    <ellipse class="hoja hoja-1" cx="34" cy="407" rx="5" ry="13" transform="rotate(-28 34 407)"/>
+    <ellipse class="hoja hoja-2" cx="52" cy="322" rx="5" ry="13" transform="rotate(-30 52 322)"/>
+    <ellipse class="hoja hoja-3" cx="95" cy="222" rx="5" ry="13" transform="rotate(-22 95 222)"/>
+    <ellipse class="hoja hoja-4" cx="219" cy="147" rx="5" ry="13" transform="rotate(34 219 147)"/>
+    <ellipse class="hoja hoja-5" cx="155" cy="66" rx="5" ry="13" transform="rotate(-28 155 66)"/>
+    <ellipse class="hoja hoja-6" cx="114" cy="390" rx="5" ry="13" transform="rotate(26 114 390)"/>
+    <ellipse class="hoja hoja-7" cx="142" cy="294" rx="5" ry="13" transform="rotate(30 142 294)"/>
+    <ellipse class="hoja hoja-8" cx="173" cy="209" rx="5" ry="13" transform="rotate(-30 173 209)"/>
+    <ellipse class="hoja hoja-9" cx="201" cy="126" rx="5" ry="13" transform="rotate(28 201 126)"/>
+    <ellipse class="hoja hoja-10" cx="236" cy="30" rx="5" ry="13" transform="rotate(24 236 30)"/>
+  </g>
+</svg>
   </div>
 
   <div class="contenido">
