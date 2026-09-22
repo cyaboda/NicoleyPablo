@@ -3144,6 +3144,25 @@ body{background:var(--warm-white);color:var(--brown-dark)}
 }
 </style>
 
+
+<style>
+/* RSVP: solo cantidad de asistentes, sin solicitar nombres */
+#acompananteWrap,
+#acompanantesWrap,
+#acompananteContainer,
+#acompanantesContainer,
+.acompanante-wrap,
+.acompanantes-wrap,
+.acompanante-container,
+.acompanantes-container,
+.campo-acompanante,
+.campo-acompanantes,
+input[placeholder*="acompañante" i],
+input[placeholder*="acompanante" i]{
+  display:none !important;
+}
+</style>
+
 </head>
 
 <body>
@@ -5337,6 +5356,33 @@ setInterval(
 
 cargarInvitado();
 
+</script>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  function quitarCamposAcompanantes() {
+    document.querySelectorAll('input').forEach(function(input) {
+      var p = (input.getAttribute('placeholder') || '').toLowerCase();
+      var n = (input.getAttribute('name') || '').toLowerCase();
+      var i = (input.id || '').toLowerCase();
+      if (p.includes('acompañante') || p.includes('acompanante') ||
+          n.includes('acompañante') || n.includes('acompanante') ||
+          i.includes('acompañante') || i.includes('acompanante')) {
+        input.value = '';
+        input.required = false;
+        input.disabled = true;
+        var cont = input.closest('.campo-acompanante, .campo-acompanantes, .acompanante-wrap, .acompanantes-wrap, .acompanante-container, .acompanantes-container');
+        if (cont) cont.style.display = 'none';
+        else input.style.display = 'none';
+      }
+    });
+  }
+  quitarCamposAcompanantes();
+  document.addEventListener('click', function () {
+    setTimeout(quitarCamposAcompanantes, 0);
+  });
+});
 </script>
 
 </body>
