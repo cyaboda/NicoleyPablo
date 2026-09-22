@@ -3163,6 +3163,45 @@ input[placeholder*="acompanante" i]{
 }
 </style>
 
+
+<style>
+/* PORTADA · crecimiento botánico coordinado */
+.portada-rama .leaf,
+.portada-rama .hoja,
+.portada-rama ellipse,
+.portada-rama path:not(.stem):not(.tallo):not(.branch):not(.rama),
+.rama-portada .leaf,
+.rama-portada .hoja,
+.rama-portada ellipse,
+.rama-portada path:not(.stem):not(.tallo):not(.branch):not(.rama){
+  opacity:0;
+  transform-box:fill-box;
+  transform-origin:center;
+  transform:scale(.08);
+  animation:hojaNaceDelTallo .55s cubic-bezier(.2,.8,.25,1) forwards;
+}
+
+/* Las hojas nacen en secuencia siguiendo el avance del tallo */
+.portada-rama :is(.leaf,.hoja,ellipse,path):nth-child(2),
+.rama-portada :is(.leaf,.hoja,ellipse,path):nth-child(2){animation-delay:.38s}
+.portada-rama :is(.leaf,.hoja,ellipse,path):nth-child(3),
+.rama-portada :is(.leaf,.hoja,ellipse,path):nth-child(3){animation-delay:.52s}
+.portada-rama :is(.leaf,.hoja,ellipse,path):nth-child(4),
+.rama-portada :is(.leaf,.hoja,ellipse,path):nth-child(4){animation-delay:.66s}
+.portada-rama :is(.leaf,.hoja,ellipse,path):nth-child(5),
+.rama-portada :is(.leaf,.hoja,ellipse,path):nth-child(5){animation-delay:.80s}
+.portada-rama :is(.leaf,.hoja,ellipse,path):nth-child(6),
+.rama-portada :is(.leaf,.hoja,ellipse,path):nth-child(6){animation-delay:.94s}
+.portada-rama :is(.leaf,.hoja,ellipse,path):nth-child(n+7),
+.rama-portada :is(.leaf,.hoja,ellipse,path):nth-child(n+7){animation-delay:1.08s}
+
+@keyframes hojaNaceDelTallo{
+  0%{opacity:0;transform:scale(.08)}
+  55%{opacity:.72;transform:scale(.72)}
+  100%{opacity:1;transform:scale(1)}
+}
+</style>
+
 </head>
 
 <body>
