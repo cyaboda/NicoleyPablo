@@ -2739,6 +2739,35 @@ body{background:var(--warm-white);color:var(--brown-dark)}
 }
 </style>
 
+
+<style>
+/* V10 · botánica del contador corregida
+   Se eliminan por completo los adornos tipo "palitos con aceitunas".
+   Dejamos los marcos limpios: la fotografía ya aporta la parte orgánica. */
+.contador-item::before,
+.contador-item:nth-child(even)::before,
+.contador-item:nth-child(2)::before,
+.contador-item:nth-child(3)::before,
+.contador-item:nth-child(4)::before,
+.tercera-contenido::after{
+  content:none !important;
+  display:none !important;
+  background:none !important;
+}
+
+/* Marcos todavía más finos y editoriales */
+.contador-item{
+  border-color:rgba(243,242,237,.48);
+  border-width:1px;
+  background:rgba(35,33,22,.055);
+}
+
+/* Pequeño detalle lineal, sin hojas falsas */
+.contador-separador{
+  opacity:.82;
+}
+</style>
+
 </head>
 
 <body>
