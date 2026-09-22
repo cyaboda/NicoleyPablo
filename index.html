@@ -485,7 +485,7 @@ select {
 }
 
 /* =========================================================
-   CONTADOR
+   CONTADOR · NICOLE & PABLO · F4.jpg
 ========================================================= */
 
 .tercera-seccion {
@@ -495,111 +495,211 @@ select {
   align-items: center;
   justify-content: center;
   position: relative;
-  padding: 70px 25px;
+  padding: 58px 25px;
   text-align: center;
   overflow: hidden;
-  background:
-    radial-gradient(circle at top left, rgba(100,103,47,.12), transparent 32%),
-    radial-gradient(circle at bottom right, rgba(100,103,47,.10), transparent 30%),
-    #F1F0ED;
+  isolation: isolate;
+  background: #302d20;
 }
 
-.tercera-seccion .scroll-botanical {
-  color: rgba(100,103,47,.46);
+/* F4 se recorta desde CSS. No hace falta editar la foto.
+   El zoom concentra el encuadre en torso, brazos y manos. */
+.tercera-seccion::before {
+  content: "";
+  position: absolute;
+  inset: -7%;
+  z-index: -3;
+  background-image: url("F4.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 50% 58%;
+  transform: scale(1.18);
+  filter: saturate(.78) contrast(.98) brightness(.78);
 }
+
+/* Capa cálida para que el contador siga siendo legible */
+.tercera-seccion::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background:
+    radial-gradient(circle at 50% 48%, rgba(61,56,35,.08), rgba(28,26,18,.42) 76%),
+    linear-gradient(180deg, rgba(31,29,20,.26), rgba(31,29,20,.40));
+}
+
+.tercera-seccion .scroll-botanical { display:none; }
 
 .tercera-contenido {
-  width: 100%;
-  max-width: 900px;
+  width: min(100%, 1040px);
   position: relative;
   z-index: 5;
+  color: #f3f2ed;
+}
+
+.tercera-contenido::before {
+  content:"NICOLE & PABLO";
+  display:block;
+  margin-bottom:20px;
+  font-family:Arial,sans-serif;
+  font-size:11px;
+  letter-spacing:6px;
+  color:rgba(243,242,237,.92);
 }
 
 .tercera-etiqueta {
-  font-family: Arial,sans-serif;
-  font-size: 11px;
-  letter-spacing: 5px;
-  text-transform: uppercase;
-  color: #80674A;
-  margin-bottom: 30px;
+  font-family: "Georgia", serif;
+  font-size: clamp(36px,4.8vw,67px);
+  letter-spacing: 0;
+  text-transform: none;
+  color: #F3F2ED;
+  margin: 0;
+  line-height: 1.05;
 }
 
-.tercera-titulo {
-  margin: 0;
-  font-size: clamp(48px,8vw,86px);
-  font-weight: 400;
-  color: #64672F;
+.tercera-etiqueta::after {
+  content:"";
+  display:block;
+  width:95px;
+  height:1px;
+  margin:24px auto 0;
+  background:rgba(243,242,237,.58);
 }
+
+.tercera-titulo { display:none; }
 
 .tercera-subtitulo {
-  margin-top: 18px;
+  margin-top: 22px;
   font-family: Arial,sans-serif;
-  font-size: 11px;
-  letter-spacing: 4px;
+  font-size: 10px;
+  letter-spacing: 5px;
   text-transform: uppercase;
-  color: #80674A;
+  color: rgba(243,242,237,.9);
 }
 
 .contador {
   width: 100%;
-  margin: 70px auto 0;
+  max-width: 850px;
+  margin: 48px auto 0;
   display: grid;
   grid-template-columns: repeat(4,1fr);
-  gap: 25px;
+  gap: 22px;
 }
 
 .contador-item {
+  min-height: 205px;
   position: relative;
-  padding: 10px 10px 20px;
+  padding: 35px 12px 26px;
+  border: 1px solid rgba(243,242,237,.58);
+  border-radius: 999px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  backdrop-filter: blur(2px);
+  background: rgba(44,41,27,.10);
 }
 
-.contador-item:not(:last-child)::after {
-  content: "";
-  position: absolute;
-  right: -13px;
-  top: 15%;
-  width: 1px;
-  height: 70%;
-  background: rgba(128,103,74,.18);
-}
+.contador-item:not(:last-child)::after { display:none; }
 
 .contador-numero {
-  display: block;
-  font-size: clamp(42px,7vw,78px);
-  color: #64672F;
+  display:block;
+  font-family:"Georgia",serif;
+  font-size:clamp(45px,5vw,70px);
+  line-height:1;
+  color:#F3F2ED;
+  text-shadow:0 2px 18px rgba(0,0,0,.22);
 }
 
 .contador-label {
-  display: block;
-  margin-top: 17px;
-  font-family: Arial,sans-serif;
-  font-size: 9px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: #80674A;
+  display:block;
+  margin-top:18px;
+  font-family:Arial,sans-serif;
+  font-size:9px;
+  letter-spacing:4px;
+  text-transform:uppercase;
+  color:rgba(243,242,237,.9);
 }
 
 .contador-separador {
-  width: 120px;
+  width: 110px;
   height: 1px;
-  margin: 60px auto 0;
-  background: rgba(128,103,74,.35);
+  margin: 42px auto 0;
+  background: rgba(243,242,237,.55);
 }
 
 .gran-dia {
-  margin-top: 36px;
-  font-size: clamp(27px,4vw,42px);
-  font-style: italic;
-  color: #64672F;
+  margin-top: 26px;
+  font-family:"Georgia",serif;
+  font-size:clamp(29px,3.5vw,45px);
+  font-style:italic;
+  color:#F3F2ED;
 }
 
 .fecha-pequena {
   margin-top: 15px;
-  font-family: Arial,sans-serif;
-  font-size: 10px;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  color: #80674A;
+  font-family:Arial,sans-serif;
+  font-size:10px;
+  letter-spacing:5px;
+  text-transform:uppercase;
+  color:rgba(243,242,237,.88);
+}
+
+@media (max-width: 760px) {
+  .tercera-seccion {
+    padding: 48px 18px 42px;
+  }
+
+  /* En vertical se acerca todavía más a la unión de los brazos. */
+  .tercera-seccion::before {
+    inset: -4%;
+    background-size: auto 118%;
+    background-position: 50% 54%;
+    transform: scale(1.22);
+  }
+
+  .tercera-contenido::before {
+    font-size:9px;
+    letter-spacing:4px;
+    margin-bottom:16px;
+  }
+
+  .tercera-etiqueta {
+    font-size:clamp(34px,10vw,50px);
+  }
+
+  .tercera-subtitulo {
+    font-size:8px;
+    letter-spacing:3.5px;
+  }
+
+  .contador {
+    max-width: 430px;
+    margin-top: 34px;
+    grid-template-columns: repeat(2,1fr);
+    gap: 13px;
+  }
+
+  .contador-item {
+    min-height: 150px;
+    padding: 22px 8px 18px;
+  }
+
+  .contador-numero { font-size:46px; }
+  .contador-label { margin-top:12px; font-size:8px; letter-spacing:2.8px; }
+  .contador-separador { margin-top:30px; width:80px; }
+  .gran-dia { margin-top:21px; font-size:29px; }
+  .fecha-pequena { font-size:8px; letter-spacing:3px; }
+}
+
+@media (max-width: 390px) {
+  .tercera-seccion::before {
+    background-size: auto 112%;
+    background-position: 50% 52%;
+    transform: scale(1.26);
+  }
+  .contador-item { min-height:138px; }
+  .contador-numero { font-size:40px; }
 }
 
 /* =========================================================
@@ -2675,7 +2775,7 @@ body{background:var(--warm-white);color:var(--brown-dark)}
     </div>
 
     <blockquote class="versiculo">
-      Pónganse guapos y acompáñenos en nuestro
+      Pónganse guapos y acompáñenos en nuestro para siempre 🤍
     </blockquote>
 
     <div class="referencia">- Para siempre -</div>
