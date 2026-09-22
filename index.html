@@ -661,8 +661,15 @@ select {
   position: absolute;
   inset: 0;
   z-index: 3;
+  pointer-events: none;
   background:
-    linear-gradient(rgba(56,45,27,.52), rgba(56,45,27,.62));
+    linear-gradient(
+      180deg,
+      rgba(54,72,47,.34) 0%,
+      rgba(111,113,55,.30) 48%,
+      rgba(143,144,96,.26) 100%
+    );
+  mix-blend-mode: multiply;
 }
 
 .evento-foto-izquierda::after,
@@ -3109,40 +3116,6 @@ body{background:var(--warm-white);color:var(--brown-dark)}
 .segunda-seccion .historia-para-siempre{
   justify-content:flex-start !important;
   text-align:left !important;
-}
-</style>
-
-
-<style>
-/* V20 · filtro cromático de la paleta en los laterales de la sección del lugar */
-.evento-seccion{
-  position:relative;
-  isolation:isolate;
-}
-.evento-seccion::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  z-index:1;
-  pointer-events:none;
-  background:
-    linear-gradient(90deg,
-      rgba(54,72,47,.46) 0%,
-      rgba(111,113,55,.30) 17%,
-      rgba(143,144,96,.16) 27%,
-      rgba(243,242,237,0) 36%,
-      rgba(243,242,237,0) 64%,
-      rgba(143,144,96,.16) 73%,
-      rgba(111,113,55,.30) 83%,
-      rgba(54,72,47,.46) 100%
-    );
-  mix-blend-mode:multiply;
-}
-
-/* El contenido central siempre queda por encima del filtro */
-.evento-seccion > *{
-  position:relative;
-  z-index:2;
 }
 </style>
 
