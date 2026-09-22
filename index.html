@@ -3202,6 +3202,53 @@ input[placeholder*="acompanante" i]{
 }
 </style>
 
+
+<style>
+/* MÓVIL · cada sección ocupa una pantalla completa real */
+@media (max-width: 768px){
+  html, body{
+    margin:0;
+    padding:0;
+  }
+
+  /* 100svh evita que se asome la siguiente sección con las barras del iPhone */
+  .segunda-seccion,
+  .tercera-seccion,
+  .evento-seccion,
+  .dresscode-seccion,
+  .regalos-seccion,
+  .rsvp-seccion{
+    min-height:100svh !important;
+    height:100svh !important;
+    box-sizing:border-box !important;
+    overflow:hidden !important;
+  }
+
+  /* Portada abierta / sección fotográfica */
+  .hero,
+  .historia-seccion,
+  .primera-seccion{
+    min-height:100svh !important;
+    box-sizing:border-box !important;
+  }
+}
+
+/* Navegadores móviles modernos: usa la altura dinámica cuando esté disponible */
+@supports (height: 100dvh){
+  @media (max-width: 768px){
+    .segunda-seccion,
+    .tercera-seccion,
+    .evento-seccion,
+    .dresscode-seccion,
+    .regalos-seccion,
+    .rsvp-seccion{
+      min-height:100dvh !important;
+      height:100dvh !important;
+    }
+  }
+}
+</style>
+
 </head>
 
 <body>
