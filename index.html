@@ -3119,92 +3119,15 @@ body{background:var(--warm-white);color:var(--brown-dark)}
 }
 </style>
 
-
 <style>
-/* V21 · Regalos públicos con revelado elegante */
-.regalos-v21-wrap{
-  position:relative;
-  z-index:2;
-  width:min(960px,90vw);
-  margin:0 auto;
-  text-align:center;
-  color:#f7f3e9;
-}
-.regalos-v21-icono{
-  width:58px;height:58px;margin:0 auto 14px;
-  border:1px solid rgba(255,255,255,.28);border-radius:50%;
-  display:grid;place-items:center;font-size:19px;
-}
-.regalos-v21-kicker{
-  font-family:Arial,sans-serif;font-size:10px;font-weight:700;
-  letter-spacing:.42em;margin-bottom:12px;
-}
-.regalos-v21-wrap h2{
-  margin:0;font-family:"Cormorant Garamond",Georgia,serif;
-  font-size:clamp(64px,6vw,92px);line-height:.95;font-weight:500;
-}
-.regalos-v21-intro{
-  margin:24px auto 22px;font-family:"Cormorant Garamond",Georgia,serif;
-  font-size:clamp(22px,2vw,30px);line-height:1.25;font-style:italic;
-}
-.regalos-v21-linea,.regalos-v21-separador{
-  width:120px;height:1px;background:rgba(255,255,255,.42);margin:26px auto;
-}
-.regalos-v21-banco{
-  width:min(500px,92%);margin:0 auto 24px;padding:25px 28px;
-  border:1px solid rgba(255,255,255,.28);border-radius:24px;
-  background:rgba(255,255,255,.045);
-}
-.regalos-v21-rombo{font-size:25px;margin-bottom:8px}
-.regalos-v21-banco h3{
-  margin:0 0 5px;font-family:"Cormorant Garamond",Georgia,serif;
-  font-size:32px;font-weight:600;
-}
-.regalos-v21-banco p{margin:0;font:13px Arial,sans-serif}
-.regalos-v21-btn,.regalos-v21-nota-btn{
-  border:0;border-radius:999px;padding:17px 34px;
-  background:#f3f2ed;color:#3b3223;
-  font:700 10px Arial,sans-serif;letter-spacing:.27em;cursor:pointer;
-  transition:transform .25s ease,background .25s ease;
-}
-.regalos-v21-btn:hover,.regalos-v21-nota-btn:hover{transform:translateY(-2px)}
-.regalos-v21-datos{
-  width:min(500px,92%);max-height:0;opacity:0;overflow:hidden;
-  margin:0 auto;transform:translateY(-8px);
-  transition:max-height .65s cubic-bezier(.2,.8,.2,1),opacity .45s ease,
-             transform .55s ease,margin .55s ease;
-}
-.regalos-v21-datos.abierto{
-  max-height:360px;opacity:1;transform:translateY(0);margin-top:22px;
-}
-.regalos-v21-datos > div{
-  display:flex;justify-content:space-between;gap:24px;align-items:center;
-  padding:13px 4px;border-bottom:1px solid rgba(255,255,255,.16);
-}
-.regalos-v21-datos span{
-  font:700 9px Arial,sans-serif;letter-spacing:.24em;opacity:.72;text-align:left;
-}
-.regalos-v21-datos strong{
-  font-family:"Cormorant Garamond",Georgia,serif;font-size:20px;font-weight:600;
-  text-align:right;
-}
-.regalos-v21-separador{width:min(660px,80%);margin-top:27px}
-.regalos-v21-nota{
-  font-family:"Cormorant Garamond",Georgia,serif;font-size:27px;
-  font-style:italic;margin:0 0 18px;
-}
-.regalos-v21-nota-btn{
-  padding:13px 29px;background:transparent;color:#fff;
-  border:1px solid rgba(255,255,255,.32);
-}
-@media(max-width:700px){
-  .regalos-v21-wrap{padding:55px 0}
-  .regalos-v21-intro br{display:none}
-  .regalos-v21-datos > div{align-items:flex-start}
-  .regalos-v21-datos strong{font-size:18px}
-}
+.bancos-preview-publico{max-width:520px;margin-left:auto;margin-right:auto}
+.datos-publicos-regalo{width:min(520px,92%);max-height:0;opacity:0;overflow:hidden;margin:0 auto;transform:translateY(-8px);transition:max-height .65s cubic-bezier(.2,.8,.2,1),opacity .4s ease,transform .55s ease,margin .55s ease}
+.datos-publicos-regalo.activo{max-height:340px;opacity:1;transform:translateY(0);margin-top:22px;margin-bottom:6px}
+.dato-publico{display:flex;justify-content:space-between;gap:24px;align-items:center;padding:13px 4px;border-bottom:1px solid rgba(255,255,255,.18)}
+.dato-publico span{font:700 9px Arial,sans-serif;letter-spacing:.22em;opacity:.72;text-align:left}
+.dato-publico strong{font-family:"Cormorant Garamond",Georgia,serif;font-size:20px;font-weight:600;text-align:right}
+@media(max-width:600px){.dato-publico{align-items:flex-start}.dato-publico strong{font-size:18px}}
 </style>
-
 </head>
 
 <body>
@@ -3632,35 +3555,73 @@ body{background:var(--warm-white);color:var(--brown-dark)}
 
 
 <section class="regalos-seccion scroll-section" id="regalosSeccion">
-  <div class="regalos-v21-wrap">
-    <div class="regalos-v21-icono">♡</div>
-    <div class="regalos-v21-kicker">UN DETALLE PARA NOSOTROS</div>
-    <h2>Regalos</h2>
-    <p class="regalos-v21-intro">Si deseas regalarnos algo más que tu hermosa presencia,<br>hemos preparado esta opción para ti.</p>
-    <div class="regalos-v21-linea"></div>
 
-    <div class="regalos-v21-banco">
-      <div class="regalos-v21-rombo">◇</div>
-      <h3>Banco Pichincha</h3>
-      <p>Nicole Pinos</p>
-    </div>
-
-    <button type="button" class="regalos-v21-btn" id="btnDatosTransferencia"
-            aria-expanded="false" aria-controls="datosTransferencia">
-      VER DATOS PARA TRANSFERENCIA
-    </button>
-
-    <div class="regalos-v21-datos" id="datosTransferencia" aria-hidden="true">
-      <div><span>TIPO DE CUENTA</span><strong>Cuenta de ahorros</strong></div>
-      <div><span>NÚMERO DE CUENTA</span><strong>2212909535</strong></div>
-      <div><span>TITULAR</span><strong>Nicole Pinos</strong></div>
-      <div><span>CI</span><strong>1720847357</strong></div>
-    </div>
-
-    <div class="regalos-v21-separador"></div>
-    <p class="regalos-v21-nota">¿Deseas dejarnos una nota sobre tu regalo?</p>
-    <button type="button" class="regalos-v21-nota-btn">DEJAR UNA NOTA</button>
+  <div class="scroll-botanical botanica-izq">
+    <svg viewBox="0 0 260 540">
+      <path class="scroll-tallo" d="M20 540 C45 450 70 360 100 280 C135 190 165 110 225 10" />
+      <path class="scroll-rama" d="M70 360 C44 345 28 320 20 292" />
+      <path class="scroll-rama" d="M145 165 C170 150 190 125 200 98" />
+      <ellipse class="scroll-hoja" data-start=".22" cx="26" cy="286" rx="10" ry="23" />
+      <ellipse class="scroll-hoja" data-start=".55" cx="202" cy="92" rx="10" ry="22" />
+    </svg>
   </div>
+
+  <div class="scroll-botanical botanica-der">
+    <svg viewBox="0 0 250 520">
+      <path class="scroll-tallo" d="M238 0 C215 80 195 155 165 235 C135 315 95 415 22 520" />
+      <path class="scroll-rama" d="M185 185 C210 167 225 145 230 115" />
+      <path class="scroll-rama" d="M92 405 C68 385 55 360 52 330" />
+      <ellipse class="scroll-hoja" data-start=".3" cx="228" cy="110" rx="10" ry="22" />
+      <ellipse class="scroll-hoja" data-start=".65" cx="55" cy="325" rx="10" ry="23" />
+    </svg>
+  </div>
+
+  <div class="regalos-contenido">
+
+    <div class="regalos-icono">♡</div>
+    <div class="regalos-etiqueta">UN DETALLE PARA NOSOTROS</div>
+    <h2 class="regalos-titulo">Regalos</h2>
+
+    <div class="regalos-texto">
+      Si deseas regalarnos algo más que tu hermosa presencia,
+      hemos preparado estas opciones para ti.
+    </div>
+
+    <div class="regalos-linea"></div>
+
+    <div class="bancos-preview bancos-preview-publico">
+      <div class="banco-preview">
+        <div class="banco-icono">◇</div>
+        <div class="banco-preview-nombre">Banco Pichincha</div>
+        <div class="banco-preview-titular">Nicole Pinos</div>
+      </div>
+    </div>
+    <button class="regalos-boton" id="abrirBancos" type="button" aria-expanded="false">VER DATOS PARA TRANSFERENCIA</button>
+    <div class="datos-publicos-regalo" id="datosPublicosRegalo" aria-hidden="true">
+      <div class="dato-publico"><span>TIPO DE CUENTA</span><strong>Cuenta de ahorros</strong></div>
+      <div class="dato-publico"><span>NÚMERO DE CUENTA</span><strong>2212909535</strong></div>
+      <div class="dato-publico"><span>TITULAR</span><strong>Nicole Pinos</strong></div>
+      <div class="dato-publico"><span>CI</span><strong>1720847357</strong></div>
+    </div>
+
+    <div class="regalo-nota-bloque">
+      <p class="regalo-nota-pregunta">
+        ¿Deseas dejarnos una nota sobre tu regalo?
+      </p>
+
+      <button class="regalo-nota-boton" id="abrirNotaRegalo" type="button">
+        DEJAR UNA NOTA
+      </button>
+
+      <div class="regalo-nota-estado" id="estadoNotaRegalo"></div>
+    </div>
+
+    <div class="regalos-nota">
+      GRACIAS POR ACOMPAÑARNOS EN ESTE NUEVO CAPÍTULO
+    </div>
+
+  </div>
+
 </section>
 
 
@@ -5259,10 +5220,18 @@ botonEnviarNotaRegalo.addEventListener(
 
 
 /* =========================================================
-   BANCOS · V23
-   Sistema antiguo con PIN retirado. Los datos públicos se manejan
-   mediante el bloque #datosTransferencia de la sección Regalos.
+   BANCOS · DATOS PÚBLICOS
 ========================================================= */
+const botonDatosPublicos = document.getElementById("abrirBancos");
+const datosPublicosRegalo = document.getElementById("datosPublicosRegalo");
+if (botonDatosPublicos && datosPublicosRegalo) {
+  botonDatosPublicos.addEventListener("click", function () {
+    const abierto = datosPublicosRegalo.classList.toggle("activo");
+    datosPublicosRegalo.setAttribute("aria-hidden", String(!abierto));
+    botonDatosPublicos.setAttribute("aria-expanded", String(abierto));
+    botonDatosPublicos.textContent = abierto ? "OCULTAR DATOS DE TRANSFERENCIA" : "VER DATOS PARA TRANSFERENCIA";
+  });
+}
 
 /* =========================================================
    CONTADOR
@@ -5352,52 +5321,6 @@ setInterval(
 
 cargarInvitado();
 
-</script>
-
-
-<script>
-document.addEventListener("DOMContentLoaded", function(){
-  const btn = document.getElementById("btnDatosTransferencia");
-  const datos = document.getElementById("datosTransferencia");
-  if(!btn || !datos) return;
-  btn.addEventListener("click", function(){
-    const abierto = datos.classList.toggle("abierto");
-    datos.setAttribute("aria-hidden", String(!abierto));
-    btn.setAttribute("aria-expanded", String(abierto));
-    btn.textContent = abierto ? "OCULTAR DATOS DE TRANSFERENCIA" : "VER DATOS PARA TRANSFERENCIA";
-  });
-});
-</script>
-
-
-<script>
-/* V22 · Failsafe de carga: nunca dejar la invitación atrapada en "Preparando..." */
-(function () {
-  function liberarInvitacion() {
-    const loaders = document.querySelectorAll(
-      '.loading-screen, .loader-screen, .pantalla-carga, #loadingScreen, #loader, #preloader, #cargando'
-    );
-    loaders.forEach(el => {
-      el.classList.add('loaded', 'oculto', 'hidden');
-      el.style.opacity = '0';
-      el.style.visibility = 'hidden';
-      el.style.pointerEvents = 'none';
-      setTimeout(() => { el.style.display = 'none'; }, 650);
-    });
-
-    document.body.classList.remove('loading', 'is-loading');
-    document.documentElement.classList.remove('loading', 'is-loading');
-    document.body.style.overflow = '';
-  }
-
-  // Si el flujo normal funciona, no estorba. Si no, libera la invitación.
-  window.addEventListener('load', function () {
-    setTimeout(liberarInvitacion, 1800);
-  });
-
-  // Failsafe absoluto.
-  setTimeout(liberarInvitacion, 4500);
-})();
 </script>
 
 </body>
