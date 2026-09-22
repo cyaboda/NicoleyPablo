@@ -3317,6 +3317,49 @@ input[placeholder*="acompanante" i]{
 @media(max-width:760px){.portada::before,.portada::after{width:48vw;height:34vh;opacity:.085}.floral-abajo-izquierda.garden-composition{width:185px;height:245px;left:-42px;bottom:-24px}.floral-arriba-derecha.garden-composition{width:190px;height:250px;right:-44px;top:-22px}}
 @media(prefers-reduced-motion:reduce){.portada .garden-composition *{animation:none!important;opacity:1!important;stroke-dashoffset:0!important}}
 </style>
+
+<style id="botanica-png-v6">
+/* Portada · ilustraciones botánicas PNG del repositorio */
+.portada .garden-composition{display:none !important;}
+.portada::before,.portada::after{display:none !important;}
+.botanica-png{
+  position:absolute;
+  z-index:2;
+  pointer-events:none;
+  user-select:none;
+  display:block;
+  object-fit:contain;
+  opacity:0;
+  filter:drop-shadow(0 12px 24px rgba(59,50,35,.08));
+  animation:botanicaPngEntrada 1.15s cubic-bezier(.22,.75,.25,1) .35s forwards;
+}
+.botanica-png-izquierda{
+  left:-1.5%;
+  bottom:-2%;
+  width:min(36vw,570px);
+  height:auto;
+  transform-origin:left bottom;
+}
+.botanica-png-derecha{
+  right:-1.5%;
+  top:-2%;
+  width:min(36vw,570px);
+  height:auto;
+  transform-origin:right top;
+}
+@keyframes botanicaPngEntrada{
+  from{opacity:0;transform:scale(.985)}
+  to{opacity:.96;transform:scale(1)}
+}
+@media(max-width:760px){
+  .botanica-png-izquierda{left:-14%;bottom:-1%;width:66vw;max-width:390px;}
+  .botanica-png-derecha{right:-14%;top:-1%;width:66vw;max-width:390px;}
+}
+@media(prefers-reduced-motion:reduce){
+  .botanica-png{animation:none;opacity:.96;}
+}
+</style>
+
 </head>
 
 <body>
@@ -3340,43 +3383,9 @@ input[placeholder*="acompanante" i]{
   <div class="linea-vertical linea-izquierda"></div>
   <div class="linea-vertical linea-derecha"></div>
 
-  <div class="floral floral-arriba-derecha garden-composition">
-    <svg viewBox="0 0 320 400" aria-hidden="true">
-      <g fill="none" stroke="currentColor">
-        <path class="garden-stem" d="M302 3 C274 51 254 99 226 145 C196 194 159 237 111 276 C79 302 54 329 34 365"/>
-        <path class="garden-twig" d="M257 88 C282 100 296 121 302 146 M229 143 C255 157 269 178 273 203 M201 188 C174 192 151 207 133 228 M168 234 C190 249 201 268 202 291 M128 269 C102 276 81 290 65 311 M91 301 C106 318 112 337 109 356"/>
-        <path class="garden-twig" d="M274 58 C253 69 237 85 227 105 M216 160 C193 168 175 182 161 200 M151 249 C136 261 125 276 120 292"/>
-      </g>
-      <g>
-        <path class="garden-leaf dark" d="M302 146 C323 160 324 185 306 203 C284 189 282 164 302 146Z"/><path class="garden-leaf sage" d="M281 119 C302 128 308 150 293 167 C271 157 265 135 281 119Z"/>
-        <path class="garden-leaf olive" d="M273 203 C295 216 297 241 279 259 C256 245 254 221 273 203Z"/><path class="garden-leaf dark" d="M257 178 C243 204 219 214 195 205 C207 178 231 167 257 178Z"/>
-        <path class="garden-leaf sage" d="M202 291 C224 304 226 328 208 346 C186 333 183 309 202 291Z"/><path class="garden-leaf olive" d="M192 250 C179 275 156 285 133 276 C144 251 167 240 192 250Z"/>
-        <path class="garden-leaf dark" d="M133 228 C120 255 95 266 71 257 C83 230 107 219 133 228Z"/><path class="garden-leaf sage" d="M65 311 C54 335 32 345 11 337 C21 312 42 302 65 311Z"/>
-        <path class="garden-leaf olive" d="M109 356 C128 368 129 389 113 400 C93 388 92 370 109 356Z"/><path class="garden-leaf dark" d="M120 292 C110 313 91 321 72 314 C81 293 100 284 120 292Z"/>
-        <path class="garden-leaf sage" d="M227 105 C215 127 194 136 174 128 C185 105 205 96 227 105Z"/><path class="garden-leaf olive" d="M161 200 C150 222 130 231 110 223 C120 201 140 192 161 200Z"/>
-        <circle class="garden-bud" cx="304" cy="209" r="3.5"/><circle class="garden-bud" cx="209" cy="351" r="3.2"/><circle class="garden-bud" cx="10" cy="340" r="3.2"/>
-      </g>
-    </svg>
-  </div>
+  <img class="botanica-png botanica-png-derecha" src="botanica-derecha.png" alt="" aria-hidden="true">
 
-  <div class="floral floral-abajo-izquierda garden-composition">
-    <svg viewBox="0 0 320 400" aria-hidden="true">
-      <g fill="none" stroke="currentColor">
-        <path class="garden-stem" d="M18 397 C48 348 66 300 92 253 C120 201 158 157 207 119 C236 96 260 72 282 37"/>
-        <path class="garden-twig" d="M65 310 C39 299 25 278 18 253 M91 255 C65 242 51 221 46 196 M119 211 C146 207 169 193 187 172 M151 166 C129 151 118 132 116 110 M190 132 C216 126 237 112 253 92 M226 101 C211 84 205 65 207 47"/>
-        <path class="garden-twig" d="M48 341 C69 330 85 314 95 294 M102 239 C125 231 143 217 157 199 M168 151 C183 139 194 124 199 108"/>
-      </g>
-      <g>
-        <path class="garden-leaf dark" d="M18 253 C-3 239 -4 214 14 196 C36 210 38 235 18 253Z"/><path class="garden-leaf sage" d="M39 280 C18 271 12 249 27 232 C49 242 55 264 39 280Z"/>
-        <path class="garden-leaf olive" d="M46 196 C24 183 22 158 40 140 C63 154 65 178 46 196Z"/><path class="garden-leaf dark" d="M62 221 C76 195 100 185 124 194 C112 221 88 232 62 221Z"/>
-        <path class="garden-leaf sage" d="M116 110 C94 97 92 73 110 55 C132 68 135 92 116 110Z"/><path class="garden-leaf olive" d="M126 151 C139 126 162 116 185 125 C174 150 151 161 126 151Z"/>
-        <path class="garden-leaf dark" d="M187 172 C200 145 225 134 249 143 C237 170 213 181 187 172Z"/><path class="garden-leaf sage" d="M253 92 C264 68 286 58 307 66 C297 91 276 101 253 92Z"/>
-        <path class="garden-leaf olive" d="M207 47 C188 35 187 14 203 0 C223 12 224 33 207 47Z"/><path class="garden-leaf dark" d="M199 108 C209 87 228 79 247 86 C238 107 219 116 199 108Z"/>
-        <path class="garden-leaf sage" d="M95 294 C107 272 128 263 148 271 C137 294 117 303 95 294Z"/><path class="garden-leaf olive" d="M157 199 C168 177 188 168 208 176 C198 198 178 207 157 199Z"/>
-        <circle class="garden-bud" cx="16" cy="190" r="3.5"/><circle class="garden-bud" cx="111" cy="49" r="3.2"/><circle class="garden-bud" cx="308" cy="63" r="3.2"/>
-      </g>
-    </svg>
-  </div>
+  <img class="botanica-png botanica-png-izquierda" src="botanica-izquierda.png" alt="" aria-hidden="true">
 
   <div class="contenido">
 
