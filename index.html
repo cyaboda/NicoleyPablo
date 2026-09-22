@@ -509,7 +509,7 @@ select {
   position: absolute;
   inset: -7%;
   z-index: -3;
-  background-image: url("F4.jpg");
+  background-image: url("F4.png");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 50% 58%;
@@ -2563,6 +2563,43 @@ body{background:var(--warm-white);color:var(--brown-dark)}
 @media(min-width:761px){
  .floral-arriba-derecha{width:255px;height:650px;right:-22px;top:-42px}
  .floral-abajo-izquierda{width:255px;height:650px;left:-22px;bottom:-60px}
+}
+</style>
+
+
+<style>
+/* V8 · contador elegante */
+.contador{
+  max-width: 780px;
+  gap: 28px;
+}
+.contador-item{
+  min-height: 220px;
+  padding: 36px 10px 28px;
+  border: 1px solid rgba(243,242,237,.54);
+  border-radius: 95px 95px 48px 48px;
+  background: rgba(32,30,20,.08);
+  backdrop-filter: blur(1.5px);
+}
+.contador-numero{
+  font-size: clamp(48px,4.6vw,66px);
+  font-weight: 400;
+}
+.contador-label{
+  margin-top: 19px;
+  font-size: 8px;
+  letter-spacing: 4px;
+}
+@media(max-width:760px){
+  .contador{
+    max-width:390px;
+    gap:14px;
+  }
+  .contador-item{
+    min-height:165px;
+    border-radius:70px 70px 34px 34px;
+    padding:26px 8px 20px;
+  }
 }
 </style>
 
