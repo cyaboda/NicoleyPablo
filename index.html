@@ -2932,6 +2932,153 @@ body{background:var(--warm-white);color:var(--brown-dark)}
 }
 </style>
 
+
+<style>
+/* V16: Segunda sección = composición aprobada (Imagen I) */
+.segunda-seccion{
+  position:relative !important;
+  min-height:100vh !important;
+  overflow:hidden !important;
+  background:
+    linear-gradient(90deg, rgba(24,22,15,.56) 0%, rgba(24,22,15,.24) 34%, rgba(24,22,15,.08) 64%, rgba(24,22,15,.20) 100%),
+    url("F1.jpg") center center / cover no-repeat !important;
+  color:#f7f3e9 !important;
+}
+
+.segunda-seccion .historia-cabecera{
+  position:absolute;
+  top:7.2%;
+  left:5.4%;
+  display:flex;
+  align-items:center;
+  gap:18px;
+  font-family:Arial,sans-serif;
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:.25em;
+  color:#fff;
+  z-index:3;
+}
+.segunda-seccion .historia-linea{
+  width:48px;
+  height:1px;
+  background:rgba(255,255,255,.72);
+}
+
+.segunda-seccion .historia-frase{
+  position:absolute;
+  left:5.4%;
+  top:33%;
+  width:min(480px,38vw);
+  z-index:3;
+}
+.segunda-seccion .historia-texto{
+  font-family:"Cormorant Garamond", Georgia, serif;
+  font-size:clamp(52px,4.05vw,78px);
+  font-weight:500;
+  line-height:.98;
+  letter-spacing:-.025em;
+  color:#fff;
+}
+.segunda-seccion .historia-para-siempre{
+  margin-top:25px;
+  display:flex;
+  align-items:center;
+  gap:14px;
+  font-family:Arial,sans-serif;
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:.31em;
+  color:#fff;
+}
+.segunda-seccion .historia-para-siempre span{
+  width:47px;
+  height:1px;
+  background:rgba(255,255,255,.68);
+}
+
+.segunda-seccion .historia-capitulo{
+  position:absolute;
+  left:5.4%;
+  bottom:4.8%;
+  font-family:Arial,sans-serif;
+  font-size:9px;
+  font-weight:600;
+  letter-spacing:.24em;
+  color:rgba(255,255,255,.86);
+  z-index:3;
+}
+
+.segunda-seccion .historia-firma{
+  position:absolute;
+  right:5.4%;
+  bottom:6.6%;
+  width:190px;
+  text-align:left;
+  color:#fff;
+  z-index:3;
+}
+.segunda-seccion .historia-firma > div{
+  font-family:"Cormorant Garamond", Georgia, serif;
+  font-size:34px;
+  line-height:.92;
+  letter-spacing:.02em;
+}
+.segunda-seccion .historia-firma > span{
+  display:block;
+  width:100%;
+  height:1px;
+  margin:15px 0 11px;
+  background:rgba(255,255,255,.42);
+}
+.segunda-seccion .historia-firma small{
+  font-family:Arial,sans-serif;
+  font-size:9px;
+  font-weight:600;
+  letter-spacing:.18em;
+}
+
+.segunda-seccion .historia-scroll{
+  position:absolute;
+  left:50%;
+  bottom:3.8%;
+  transform:translateX(-50%);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:8px;
+  white-space:nowrap;
+  z-index:4;
+  color:#fff;
+}
+.segunda-seccion .historia-scroll span{
+  font-family:Arial,sans-serif;
+  font-size:9px;
+  font-weight:600;
+  letter-spacing:.27em;
+}
+.segunda-seccion .historia-scroll b{
+  font-family:Georgia,serif;
+  font-size:25px;
+  line-height:1;
+  font-weight:400;
+}
+
+@media(max-width:700px){
+  .segunda-seccion{min-height:100svh !important;background-position:57% center !important;}
+  .segunda-seccion .historia-cabecera{top:5.5%;left:7%;font-size:9px;gap:12px;}
+  .segunda-seccion .historia-linea{width:34px;}
+  .segunda-seccion .historia-frase{left:7%;top:30%;width:72vw;}
+  .segunda-seccion .historia-texto{font-size:clamp(42px,12vw,58px);}
+  .segunda-seccion .historia-capitulo{left:7%;bottom:4%;font-size:7px;}
+  .segunda-seccion .historia-firma{right:6%;bottom:10%;width:130px;}
+  .segunda-seccion .historia-firma > div{font-size:25px;}
+  .segunda-seccion .historia-firma small{font-size:7px;}
+  .segunda-seccion .historia-scroll{bottom:3%;max-width:55vw;}
+  .segunda-seccion .historia-scroll span{font-size:7px;letter-spacing:.18em;}
+}
+</style>
+
 </head>
 
 <body>
@@ -3122,37 +3269,38 @@ body{background:var(--warm-white);color:var(--brown-dark)}
 </section>
 
 
+
 <section class="segunda-seccion" id="segundaSeccion">
-
-  <div class="segunda-contenido">
-
-    <div class="segunda-nombres">Nicole & Pablo</div>
-
-    <div class="ramita-central">
-      <svg viewBox="0 0 120 90">
-        <path d="M60 84 C58 69 56 54 57 38 C58 29 59 21 59 12" fill="none" stroke="currentColor" stroke-width="1.7" />
-        <path d="M57 53 C47 49 38 42 30 32" fill="none" stroke="currentColor" stroke-width="1.5" />
-        <path d="M58 40 C70 36 80 29 90 18" fill="none" stroke="currentColor" stroke-width="1.5" />
-        <path d="M59 28 C52 24 47 18 44 12" fill="none" stroke="currentColor" stroke-width="1.5" />
-        <path d="M32 34 C22 31 17 23 18 15 C27 16 34 23 32 34 Z" fill="currentColor" stroke="none" opacity=".78" />
-        <path d="M85 23 C90 13 99 8 106 11 C104 20 97 26 85 23 Z" fill="currentColor" stroke="none" opacity=".78" />
-        <path d="M47 17 C40 14 36 8 38 3 C46 4 51 9 47 17 Z" fill="currentColor" stroke="none" opacity=".72" />
-      </svg>
-    </div>
-
-    <blockquote class="versiculo">
-      Pónganse guapos y acompáñenos en nuestro
-    </blockquote>
-
-    <div class="referencia">- Para siempre -</div>
-    <div class="linea-fecha"></div>
-    <div class="fecha-boda">12 · 12 · 2026</div>
-    <div class="desliza">Desliza para continuar</div>
-    <div class="flecha">↓</div>
-
+  <div class="historia-cabecera">
+    <span class="historia-linea"></span>
+    <span>NUESTRA HISTORIA</span>
   </div>
 
+  <div class="historia-frase">
+    <div class="historia-texto">
+      Pónganse guapos<br>
+      y acompáñenos<br>
+      en nuestro
+    </div>
+    <div class="historia-para-siempre">
+      <span></span> PARA SIEMPRE
+    </div>
+  </div>
+
+  <div class="historia-capitulo">⌁ &nbsp;&nbsp; UN NUEVO CAPÍTULO JUNTOS</div>
+
+  <div class="historia-firma">
+    <div>NICOLE<br>&amp; PABLO</div>
+    <span></span>
+    <small>12 DICIEMBRE 2026</small>
+  </div>
+
+  <div class="historia-scroll">
+    <span>DESLIZA PARA CONTINUAR</span>
+    <b>↓</b>
+  </div>
 </section>
+
 
 
 <section class="tercera-seccion scroll-section" id="cuentaRegresiva">
