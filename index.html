@@ -3300,20 +3300,21 @@ input[placeholder*="acompanante" i]{
 }
 </style>
 
-<style id="botanica-jardin-v4">
-/* Portada: composición botánica editorial densa, 100% SVG inline */
-.portada .garden-composition{color:#6f7137;opacity:.94;pointer-events:none}
-.portada .garden-composition svg{width:100%;height:100%;overflow:visible}
-.portada .garden-composition .garden-main,.portada .garden-composition .garden-branch,.portada .garden-composition .garden-sprays,.portada .garden-composition .garden-veins{stroke-dasharray:900;stroke-dashoffset:900;animation:trazarRama 1.9s cubic-bezier(.22,.7,.25,1) forwards}
-.portada .garden-composition .garden-main{stroke-width:1.55;animation-delay:.35s}.portada .garden-composition .garden-main.secondary{stroke-width:1.05;opacity:.72;animation-delay:.65s}.portada .garden-composition .garden-main.tertiary{stroke-width:.9;opacity:.6;animation-delay:.82s}
-.portada .garden-composition .garden-branch{stroke-width:1.02;animation-delay:.95s}.portada .garden-composition .garden-branch.fine{stroke-width:.72;opacity:.68;animation-delay:1.18s}.portada .garden-composition .garden-sprays{stroke-width:.68;opacity:.58;animation-delay:1.3s}.portada .garden-composition .garden-veins{stroke-width:.48;opacity:.32;animation-delay:2.05s}
-.portada .garden-composition .g-leaf,.portada .garden-composition .garden-small-leaves ellipse,.portada .garden-composition .garden-buds circle{opacity:0;transform-box:fill-box;transform-origin:center;animation:gardenLeaf .62s cubic-bezier(.2,.85,.25,1) forwards}
-.portada .garden-composition .g-leaf{stroke:rgba(79,82,39,.35);stroke-width:.35}.portada .garden-composition .g-leaf.olive{fill:#73763d}.portada .garden-composition .g-leaf.sage{fill:#9a9b70}.portada .garden-composition .g-leaf.forest{fill:#4d6047}
-.portada .garden-composition .garden-small-leaves ellipse{fill:#8c8e5d}.portada .garden-composition .garden-buds circle{fill:#78654a}
-.portada .garden-composition .garden-leaves .g-leaf:nth-child(1),.portada .garden-composition .garden-leaves .g-leaf:nth-child(2){animation-delay:1.25s}.portada .garden-composition .garden-leaves .g-leaf:nth-child(3),.portada .garden-composition .garden-leaves .g-leaf:nth-child(4){animation-delay:1.42s}.portada .garden-composition .garden-leaves .g-leaf:nth-child(5),.portada .garden-composition .garden-leaves .g-leaf:nth-child(6){animation-delay:1.58s}.portada .garden-composition .garden-leaves .g-leaf:nth-child(7),.portada .garden-composition .garden-leaves .g-leaf:nth-child(8){animation-delay:1.72s}.portada .garden-composition .garden-leaves .g-leaf:nth-child(n+9){animation-delay:1.9s}.portada .garden-composition .garden-small-leaves ellipse{animation-delay:2.05s}.portada .garden-composition .garden-buds circle{animation-delay:2.22s}
-@keyframes gardenLeaf{0%{opacity:0;transform:scale(.08) rotate(-7deg)}70%{opacity:.96;transform:scale(1.06) rotate(1deg)}100%{opacity:.94;transform:scale(1) rotate(0)}}
-@media(min-width:761px){.floral-arriba-derecha.garden-composition{width:360px;height:720px;right:-62px;top:-55px}.floral-abajo-izquierda.garden-composition{width:360px;height:720px;left:-62px;bottom:-70px}}
-@media(max-width:760px){.floral-arriba-derecha.garden-composition{width:225px;height:470px;right:-66px;top:-35px}.floral-abajo-izquierda.garden-composition{width:225px;height:470px;left:-66px;bottom:-40px}}
+<style id="botanica-jardin-v5">
+/* V5 · Marco botánico parcial + sombras vegetales. Solo modifica la decoración de la portada. */
+.portada .garden-composition{pointer-events:none;color:#667044;opacity:.92;z-index:2}
+.portada .garden-composition svg{width:100%;height:100%;overflow:visible;filter:drop-shadow(0 10px 18px rgba(59,50,35,.06))}
+.portada .garden-stem,.portada .garden-twig{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:700;stroke-dashoffset:700;animation:botStem 1.65s cubic-bezier(.2,.72,.25,1) forwards}
+.portada .garden-stem{stroke-width:1.65;animation-delay:.28s}.portada .garden-twig{stroke-width:1.05;opacity:.82;animation-delay:.78s}
+.portada .garden-leaf,.portada .garden-bud{opacity:0;transform-box:fill-box;transform-origin:center;animation:botLeaf .55s cubic-bezier(.2,.85,.25,1) forwards}
+.portada .garden-leaf{stroke:rgba(65,72,43,.28);stroke-width:.35}.portada .garden-leaf.dark{fill:#536547}.portada .garden-leaf.olive{fill:#777b43}.portada .garden-leaf.sage{fill:#9a9b70}.portada .garden-bud{fill:#78654a}
+.portada .garden-leaf:nth-of-type(1),.portada .garden-leaf:nth-of-type(2){animation-delay:1.05s}.portada .garden-leaf:nth-of-type(3),.portada .garden-leaf:nth-of-type(4){animation-delay:1.18s}.portada .garden-leaf:nth-of-type(5),.portada .garden-leaf:nth-of-type(6){animation-delay:1.31s}.portada .garden-leaf:nth-of-type(7),.portada .garden-leaf:nth-of-type(8){animation-delay:1.44s}.portada .garden-leaf:nth-of-type(n+9){animation-delay:1.58s}.portada .garden-bud{animation-delay:1.82s}
+@keyframes botStem{to{stroke-dashoffset:0}}@keyframes botLeaf{0%{opacity:0;transform:scale(.05)}72%{opacity:.96;transform:scale(1.05)}100%{opacity:.92;transform:scale(1)}}
+/* sombras de follaje, muy suaves: dan profundidad sin meter más elementos */
+.portada::before,.portada::after{content:"";position:absolute;pointer-events:none;z-index:1;width:28vw;height:46vh;opacity:.11;filter:blur(16px);background:radial-gradient(ellipse at 28% 72%,rgba(83,101,71,.72) 0 10%,transparent 11%),radial-gradient(ellipse at 48% 50%,rgba(111,113,55,.58) 0 9%,transparent 10%),radial-gradient(ellipse at 67% 30%,rgba(83,101,71,.52) 0 8%,transparent 9%);transform:rotate(-24deg)}
+.portada::before{left:-8vw;bottom:-10vh}.portada::after{right:-8vw;top:-10vh;transform:rotate(156deg)}
+@media(min-width:761px){.floral-abajo-izquierda.garden-composition{width:310px;height:390px;left:-18px;bottom:-18px}.floral-arriba-derecha.garden-composition{width:315px;height:400px;right:-18px;top:-16px}}
+@media(max-width:760px){.portada::before,.portada::after{width:48vw;height:34vh;opacity:.085}.floral-abajo-izquierda.garden-composition{width:185px;height:245px;left:-42px;bottom:-24px}.floral-arriba-derecha.garden-composition{width:190px;height:250px;right:-44px;top:-22px}}
 @media(prefers-reduced-motion:reduce){.portada .garden-composition *{animation:none!important;opacity:1!important;stroke-dashoffset:0!important}}
 </style>
 </head>
@@ -3340,75 +3341,41 @@ input[placeholder*="acompanante" i]{
   <div class="linea-vertical linea-derecha"></div>
 
   <div class="floral floral-arriba-derecha garden-composition">
-    <svg viewBox="0 0 420 720" aria-hidden="true">
-<g class="garden-stems" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
- <path class="garden-main" d="M34 718 C68 642 88 566 124 494 C159 423 185 353 225 284 C264 216 309 153 370 79"/>
- <path class="garden-main secondary" d="M56 716 C79 654 98 600 116 548 C138 485 144 427 139 365"/>
- <path class="garden-main tertiary" d="M103 574 C145 550 181 514 208 470 C236 424 255 377 272 326"/>
- <path class="garden-branch" d="M93 559 C60 542 38 516 25 483 M118 500 C153 490 182 468 205 436 M151 433 C117 416 93 389 78 356 M185 364 C222 354 253 329 278 296 M220 291 C191 271 173 245 163 214 M264 221 C300 211 330 187 351 158 M309 153 C287 132 276 107 274 82"/>
- <path class="garden-branch fine" d="M75 635 C53 620 40 600 34 578 M111 545 C132 531 147 512 156 491 M137 458 C119 446 106 429 100 411 M195 346 C211 331 224 313 230 294 M242 257 C226 244 216 227 212 210 M289 188 C308 176 323 159 331 140"/>
-</g>
-<g class="garden-leaves">
- <path class="g-leaf olive" d="M25 483 C2 468 1 439 22 419 C46 436 48 465 25 483Z"/><path class="g-leaf sage" d="M38 516 C18 506 13 483 28 465 C49 477 55 499 38 516Z"/>
- <path class="g-leaf olive" d="M78 356 C53 344 48 315 67 293 C93 307 99 335 78 356Z"/><path class="g-leaf sage" d="M96 390 C75 381 70 358 85 340 C107 351 112 373 96 390Z"/>
- <path class="g-leaf forest" d="M163 214 C139 201 136 174 155 154 C179 168 183 194 163 214Z"/><path class="g-leaf sage" d="M176 241 C157 232 154 211 168 195 C188 206 191 226 176 241Z"/>
- <path class="g-leaf olive" d="M274 82 C253 70 252 46 269 29 C290 42 292 65 274 82Z"/>
- <path class="g-leaf forest" d="M205 436 C218 405 247 391 276 401 C264 432 237 446 205 436Z"/><path class="g-leaf sage" d="M194 460 C205 437 226 427 248 435 C238 458 217 468 194 460Z"/>
- <path class="g-leaf olive" d="M278 296 C291 266 320 252 348 263 C336 293 309 307 278 296Z"/><path class="g-leaf sage" d="M266 321 C277 298 298 288 320 296 C310 319 289 329 266 321Z"/>
- <path class="g-leaf forest" d="M351 158 C363 131 388 120 412 130 C402 157 378 169 351 158Z"/><path class="g-leaf sage" d="M337 180 C347 160 365 152 384 159 C375 180 357 188 337 180Z"/>
- <path class="g-leaf olive" d="M34 578 C13 566 10 542 27 524 C49 538 52 561 34 578Z"/><path class="g-leaf forest" d="M156 491 C166 467 188 456 210 464 C201 488 180 499 156 491Z"/>
- <path class="g-leaf sage" d="M100 411 C80 401 76 378 92 361 C113 373 117 395 100 411Z"/><path class="g-leaf olive" d="M230 294 C240 271 261 261 282 269 C273 292 253 302 230 294Z"/>
- <path class="g-leaf forest" d="M212 210 C193 199 191 177 207 161 C227 173 229 194 212 210Z"/><path class="g-leaf olive" d="M331 140 C341 117 362 107 383 115 C374 138 354 148 331 140Z"/>
-</g>
-<g class="garden-sprays" fill="none" stroke="currentColor" stroke-linecap="round">
- <path d="M117 548 C87 531 68 507 59 477 M139 365 C165 342 180 316 184 286 M272 326 C304 307 326 281 339 249"/>
-</g>
-<g class="garden-small-leaves">
- <ellipse cx="64" cy="487" rx="8" ry="18" transform="rotate(-34 64 487)"/><ellipse cx="79" cy="511" rx="7" ry="16" transform="rotate(48 79 511)"/>
- <ellipse cx="170" cy="323" rx="8" ry="18" transform="rotate(-42 170 323)"/><ellipse cx="184" cy="297" rx="7" ry="16" transform="rotate(42 184 297)"/>
- <ellipse cx="312" cy="299" rx="8" ry="18" transform="rotate(-45 312 299)"/><ellipse cx="333" cy="268" rx="7" ry="16" transform="rotate(42 333 268)"/>
-</g>
-<g class="garden-buds"><circle cx="58" cy="469" r="4"/><circle cx="185" cy="280" r="4"/><circle cx="342" cy="241" r="4"/><circle cx="384" cy="115" r="3.5"/></g>
-<g class="garden-veins" fill="none" stroke="currentColor" stroke-linecap="round">
- <path d="M25 478 L22 424 M77 351 L68 298 M162 209 L156 159 M274 77 L270 34 M210 432 L271 403 M283 292 L343 265 M356 154 L407 132"/>
-</g>
-</svg>
+    <svg viewBox="0 0 320 400" aria-hidden="true">
+      <g fill="none" stroke="currentColor">
+        <path class="garden-stem" d="M302 3 C274 51 254 99 226 145 C196 194 159 237 111 276 C79 302 54 329 34 365"/>
+        <path class="garden-twig" d="M257 88 C282 100 296 121 302 146 M229 143 C255 157 269 178 273 203 M201 188 C174 192 151 207 133 228 M168 234 C190 249 201 268 202 291 M128 269 C102 276 81 290 65 311 M91 301 C106 318 112 337 109 356"/>
+        <path class="garden-twig" d="M274 58 C253 69 237 85 227 105 M216 160 C193 168 175 182 161 200 M151 249 C136 261 125 276 120 292"/>
+      </g>
+      <g>
+        <path class="garden-leaf dark" d="M302 146 C323 160 324 185 306 203 C284 189 282 164 302 146Z"/><path class="garden-leaf sage" d="M281 119 C302 128 308 150 293 167 C271 157 265 135 281 119Z"/>
+        <path class="garden-leaf olive" d="M273 203 C295 216 297 241 279 259 C256 245 254 221 273 203Z"/><path class="garden-leaf dark" d="M257 178 C243 204 219 214 195 205 C207 178 231 167 257 178Z"/>
+        <path class="garden-leaf sage" d="M202 291 C224 304 226 328 208 346 C186 333 183 309 202 291Z"/><path class="garden-leaf olive" d="M192 250 C179 275 156 285 133 276 C144 251 167 240 192 250Z"/>
+        <path class="garden-leaf dark" d="M133 228 C120 255 95 266 71 257 C83 230 107 219 133 228Z"/><path class="garden-leaf sage" d="M65 311 C54 335 32 345 11 337 C21 312 42 302 65 311Z"/>
+        <path class="garden-leaf olive" d="M109 356 C128 368 129 389 113 400 C93 388 92 370 109 356Z"/><path class="garden-leaf dark" d="M120 292 C110 313 91 321 72 314 C81 293 100 284 120 292Z"/>
+        <path class="garden-leaf sage" d="M227 105 C215 127 194 136 174 128 C185 105 205 96 227 105Z"/><path class="garden-leaf olive" d="M161 200 C150 222 130 231 110 223 C120 201 140 192 161 200Z"/>
+        <circle class="garden-bud" cx="304" cy="209" r="3.5"/><circle class="garden-bud" cx="209" cy="351" r="3.2"/><circle class="garden-bud" cx="10" cy="340" r="3.2"/>
+      </g>
+    </svg>
   </div>
 
   <div class="floral floral-abajo-izquierda garden-composition">
-    <svg viewBox="0 0 420 720" aria-hidden="true">
-<g class="garden-stems" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
- <path class="garden-main" d="M34 718 C68 642 88 566 124 494 C159 423 185 353 225 284 C264 216 309 153 370 79"/>
- <path class="garden-main secondary" d="M56 716 C79 654 98 600 116 548 C138 485 144 427 139 365"/>
- <path class="garden-main tertiary" d="M103 574 C145 550 181 514 208 470 C236 424 255 377 272 326"/>
- <path class="garden-branch" d="M93 559 C60 542 38 516 25 483 M118 500 C153 490 182 468 205 436 M151 433 C117 416 93 389 78 356 M185 364 C222 354 253 329 278 296 M220 291 C191 271 173 245 163 214 M264 221 C300 211 330 187 351 158 M309 153 C287 132 276 107 274 82"/>
- <path class="garden-branch fine" d="M75 635 C53 620 40 600 34 578 M111 545 C132 531 147 512 156 491 M137 458 C119 446 106 429 100 411 M195 346 C211 331 224 313 230 294 M242 257 C226 244 216 227 212 210 M289 188 C308 176 323 159 331 140"/>
-</g>
-<g class="garden-leaves">
- <path class="g-leaf olive" d="M25 483 C2 468 1 439 22 419 C46 436 48 465 25 483Z"/><path class="g-leaf sage" d="M38 516 C18 506 13 483 28 465 C49 477 55 499 38 516Z"/>
- <path class="g-leaf olive" d="M78 356 C53 344 48 315 67 293 C93 307 99 335 78 356Z"/><path class="g-leaf sage" d="M96 390 C75 381 70 358 85 340 C107 351 112 373 96 390Z"/>
- <path class="g-leaf forest" d="M163 214 C139 201 136 174 155 154 C179 168 183 194 163 214Z"/><path class="g-leaf sage" d="M176 241 C157 232 154 211 168 195 C188 206 191 226 176 241Z"/>
- <path class="g-leaf olive" d="M274 82 C253 70 252 46 269 29 C290 42 292 65 274 82Z"/>
- <path class="g-leaf forest" d="M205 436 C218 405 247 391 276 401 C264 432 237 446 205 436Z"/><path class="g-leaf sage" d="M194 460 C205 437 226 427 248 435 C238 458 217 468 194 460Z"/>
- <path class="g-leaf olive" d="M278 296 C291 266 320 252 348 263 C336 293 309 307 278 296Z"/><path class="g-leaf sage" d="M266 321 C277 298 298 288 320 296 C310 319 289 329 266 321Z"/>
- <path class="g-leaf forest" d="M351 158 C363 131 388 120 412 130 C402 157 378 169 351 158Z"/><path class="g-leaf sage" d="M337 180 C347 160 365 152 384 159 C375 180 357 188 337 180Z"/>
- <path class="g-leaf olive" d="M34 578 C13 566 10 542 27 524 C49 538 52 561 34 578Z"/><path class="g-leaf forest" d="M156 491 C166 467 188 456 210 464 C201 488 180 499 156 491Z"/>
- <path class="g-leaf sage" d="M100 411 C80 401 76 378 92 361 C113 373 117 395 100 411Z"/><path class="g-leaf olive" d="M230 294 C240 271 261 261 282 269 C273 292 253 302 230 294Z"/>
- <path class="g-leaf forest" d="M212 210 C193 199 191 177 207 161 C227 173 229 194 212 210Z"/><path class="g-leaf olive" d="M331 140 C341 117 362 107 383 115 C374 138 354 148 331 140Z"/>
-</g>
-<g class="garden-sprays" fill="none" stroke="currentColor" stroke-linecap="round">
- <path d="M117 548 C87 531 68 507 59 477 M139 365 C165 342 180 316 184 286 M272 326 C304 307 326 281 339 249"/>
-</g>
-<g class="garden-small-leaves">
- <ellipse cx="64" cy="487" rx="8" ry="18" transform="rotate(-34 64 487)"/><ellipse cx="79" cy="511" rx="7" ry="16" transform="rotate(48 79 511)"/>
- <ellipse cx="170" cy="323" rx="8" ry="18" transform="rotate(-42 170 323)"/><ellipse cx="184" cy="297" rx="7" ry="16" transform="rotate(42 184 297)"/>
- <ellipse cx="312" cy="299" rx="8" ry="18" transform="rotate(-45 312 299)"/><ellipse cx="333" cy="268" rx="7" ry="16" transform="rotate(42 333 268)"/>
-</g>
-<g class="garden-buds"><circle cx="58" cy="469" r="4"/><circle cx="185" cy="280" r="4"/><circle cx="342" cy="241" r="4"/><circle cx="384" cy="115" r="3.5"/></g>
-<g class="garden-veins" fill="none" stroke="currentColor" stroke-linecap="round">
- <path d="M25 478 L22 424 M77 351 L68 298 M162 209 L156 159 M274 77 L270 34 M210 432 L271 403 M283 292 L343 265 M356 154 L407 132"/>
-</g>
-</svg>
+    <svg viewBox="0 0 320 400" aria-hidden="true">
+      <g fill="none" stroke="currentColor">
+        <path class="garden-stem" d="M18 397 C48 348 66 300 92 253 C120 201 158 157 207 119 C236 96 260 72 282 37"/>
+        <path class="garden-twig" d="M65 310 C39 299 25 278 18 253 M91 255 C65 242 51 221 46 196 M119 211 C146 207 169 193 187 172 M151 166 C129 151 118 132 116 110 M190 132 C216 126 237 112 253 92 M226 101 C211 84 205 65 207 47"/>
+        <path class="garden-twig" d="M48 341 C69 330 85 314 95 294 M102 239 C125 231 143 217 157 199 M168 151 C183 139 194 124 199 108"/>
+      </g>
+      <g>
+        <path class="garden-leaf dark" d="M18 253 C-3 239 -4 214 14 196 C36 210 38 235 18 253Z"/><path class="garden-leaf sage" d="M39 280 C18 271 12 249 27 232 C49 242 55 264 39 280Z"/>
+        <path class="garden-leaf olive" d="M46 196 C24 183 22 158 40 140 C63 154 65 178 46 196Z"/><path class="garden-leaf dark" d="M62 221 C76 195 100 185 124 194 C112 221 88 232 62 221Z"/>
+        <path class="garden-leaf sage" d="M116 110 C94 97 92 73 110 55 C132 68 135 92 116 110Z"/><path class="garden-leaf olive" d="M126 151 C139 126 162 116 185 125 C174 150 151 161 126 151Z"/>
+        <path class="garden-leaf dark" d="M187 172 C200 145 225 134 249 143 C237 170 213 181 187 172Z"/><path class="garden-leaf sage" d="M253 92 C264 68 286 58 307 66 C297 91 276 101 253 92Z"/>
+        <path class="garden-leaf olive" d="M207 47 C188 35 187 14 203 0 C223 12 224 33 207 47Z"/><path class="garden-leaf dark" d="M199 108 C209 87 228 79 247 86 C238 107 219 116 199 108Z"/>
+        <path class="garden-leaf sage" d="M95 294 C107 272 128 263 148 271 C137 294 117 303 95 294Z"/><path class="garden-leaf olive" d="M157 199 C168 177 188 168 208 176 C198 198 178 207 157 199Z"/>
+        <circle class="garden-bud" cx="16" cy="190" r="3.5"/><circle class="garden-bud" cx="111" cy="49" r="3.2"/><circle class="garden-bud" cx="308" cy="63" r="3.2"/>
+      </g>
+    </svg>
   </div>
 
   <div class="contenido">
