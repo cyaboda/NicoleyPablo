@@ -2603,6 +2603,142 @@ body{background:var(--warm-white);color:var(--brown-dark)}
 }
 </style>
 
+
+<style>
+/* V9 · ajuste visual para acercarse al diseño aprobado */
+.tercera-seccion::before{
+  /* Más aire: manos al centro, cuerpos entrando por los laterales */
+  inset:-3%;
+  background-size:cover;
+  background-position:50% 51%;
+  transform:scale(1.08);
+  filter:saturate(.72) contrast(.94) brightness(.74);
+}
+.tercera-seccion::after{
+  background:
+    linear-gradient(90deg,rgba(25,24,17,.26),rgba(43,40,25,.15) 48%,rgba(25,24,17,.25)),
+    linear-gradient(180deg,rgba(30,28,19,.18),rgba(27,25,17,.38));
+}
+
+.tercera-contenido{max-width:980px}
+.tercera-contenido::before{margin-bottom:18px}
+
+.tercera-etiqueta{
+  font-size:clamp(40px,4.35vw,63px);
+  font-weight:400;
+}
+.tercera-etiqueta::after{
+  width:105px;
+  margin-top:20px;
+}
+.tercera-subtitulo{margin-top:20px}
+
+.contador{
+  max-width:760px;
+  margin-top:42px;
+  gap:24px;
+}
+.contador-item{
+  min-height:218px;
+  padding:35px 10px 26px;
+  /* La referencia usa una cápsula vertical suave, no una puerta */
+  border-radius:48% / 32%;
+  border-color:rgba(243,242,237,.55);
+  background:rgba(35,33,22,.08);
+  overflow:visible;
+}
+.contador-numero{font-size:clamp(46px,4.2vw,61px)}
+.contador-label{margin-top:17px}
+
+/* Ramitas decorativas dentro de los marcos, construidas en CSS */
+.contador-item::before{
+  content:"";
+  position:absolute;
+  width:42px;
+  height:88px;
+  bottom:-3px;
+  left:-8px;
+  opacity:.72;
+  background:
+    radial-gradient(ellipse at 25% 22%,rgba(178,181,126,.95) 0 12%,transparent 13%),
+    radial-gradient(ellipse at 63% 34%,rgba(139,146,86,.9) 0 12%,transparent 13%),
+    radial-gradient(ellipse at 31% 49%,rgba(178,181,126,.88) 0 11%,transparent 12%),
+    radial-gradient(ellipse at 70% 61%,rgba(126,135,76,.9) 0 11%,transparent 12%),
+    radial-gradient(ellipse at 40% 76%,rgba(168,173,111,.9) 0 10%,transparent 11%),
+    linear-gradient(66deg,transparent 48%,rgba(218,218,181,.82) 49% 51%,transparent 52%);
+  transform:rotate(-15deg);
+}
+.contador-item:nth-child(even)::before{
+  left:auto;
+  right:-8px;
+  transform:scaleX(-1) rotate(-15deg);
+}
+.contador-item:nth-child(2)::before{bottom:-9px}
+.contador-item:nth-child(3)::before{bottom:8px}
+.contador-item:nth-child(4)::before{bottom:-5px}
+
+.contador-separador{
+  position:relative;
+  width:118px;
+  margin-top:38px;
+}
+.contador-separador::after{
+  content:"♥";
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-54%);
+  padding:0 10px;
+  font-size:10px;
+  color:#f3f2ed;
+  background:transparent;
+  text-shadow:0 0 10px rgba(0,0,0,.45);
+}
+.gran-dia{margin-top:25px}
+.fecha-pequena{margin-top:14px}
+
+/* Botánicos de esquina, muy sutiles */
+.tercera-contenido::after{
+  content:"";
+  position:absolute;
+  right:-210px;
+  bottom:-105px;
+  width:180px;
+  height:230px;
+  opacity:.25;
+  pointer-events:none;
+  background:
+    radial-gradient(ellipse at 32% 28%,#d7d7bd 0 7%,transparent 8%),
+    radial-gradient(ellipse at 59% 39%,#a7aa77 0 8%,transparent 9%),
+    radial-gradient(ellipse at 37% 52%,#d7d7bd 0 7%,transparent 8%),
+    radial-gradient(ellipse at 66% 65%,#8f9060 0 8%,transparent 9%),
+    linear-gradient(65deg,transparent 49%,#d8d7bb 49.5% 50.5%,transparent 51%);
+}
+
+@media(max-width:760px){
+  .tercera-seccion::before{
+    background-size:auto 108%;
+    background-position:50% 50%;
+    transform:scale(1.10);
+  }
+  .contador{
+    max-width:380px;
+    gap:14px;
+  }
+  .contador-item{
+    min-height:160px;
+    border-radius:48% / 31%;
+  }
+  .contador-item::before{
+    width:31px;
+    height:64px;
+    left:-4px;
+  }
+  .contador-item:nth-child(even)::before{right:-4px;left:auto}
+  .tercera-contenido::after{display:none}
+}
+</style>
+
 </head>
 
 <body>
