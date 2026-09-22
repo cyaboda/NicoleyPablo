@@ -5608,6 +5608,37 @@ document.addEventListener("DOMContentLoaded", function(){
 });
 </script>
 
+
+<script>
+/* V22 · Failsafe de carga: nunca dejar la invitación atrapada en "Preparando..." */
+(function () {
+  function liberarInvitacion() {
+    const loaders = document.querySelectorAll(
+      '.loading-screen, .loader-screen, .pantalla-carga, #loadingScreen, #loader, #preloader'
+    );
+    loaders.forEach(el => {
+      el.classList.add('loaded', 'oculto', 'hidden');
+      el.style.opacity = '0';
+      el.style.visibility = 'hidden';
+      el.style.pointerEvents = 'none';
+      setTimeout(() => { el.style.display = 'none'; }, 650);
+    });
+
+    document.body.classList.remove('loading', 'is-loading');
+    document.documentElement.classList.remove('loading', 'is-loading');
+    document.body.style.overflow = '';
+  }
+
+  // Si el flujo normal funciona, no estorba. Si no, libera la invitación.
+  window.addEventListener('load', function () {
+    setTimeout(liberarInvitacion, 1800);
+  });
+
+  // Failsafe absoluto.
+  setTimeout(liberarInvitacion, 4500);
+})();
+</script>
+
 </body>
 
 </html>
