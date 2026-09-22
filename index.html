@@ -3360,6 +3360,22 @@ input[placeholder*="acompanante" i]{
 }
 </style>
 
+
+<style id="particulas-botanicas-v1">
+/* Partículas botánicas sutiles detrás de las ilustraciones de portada */
+.botanica-particulas{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden}
+.botanica-particula{position:absolute;display:block;opacity:0;will-change:transform,opacity}
+.botanica-particula.hoja{width:9px;height:17px;border-radius:90% 10% 90% 10%;background:rgba(111,113,55,.52)}
+.botanica-particula.mota{width:4px;height:4px;border-radius:50%;background:rgba(143,144,96,.58)}
+.botanica-particula.crema{width:5px;height:5px;border-radius:50%;background:rgba(214,202,171,.72)}
+.botanica-particulas.izq .botanica-particula{left:clamp(55px,12vw,190px);bottom:clamp(45px,13vh,130px);animation:particulaIzq var(--dur,8s) ease-out var(--delay,0s) infinite}
+.botanica-particulas.der .botanica-particula{right:clamp(55px,12vw,190px);top:clamp(45px,13vh,130px);animation:particulaDer var(--dur,8s) ease-out var(--delay,0s) infinite}
+@keyframes particulaIzq{0%{opacity:0;transform:translate(0,0) rotate(0deg) scale(.55)}12%{opacity:var(--op,.55)}72%{opacity:calc(var(--op,.55)*.7)}100%{opacity:0;transform:translate(var(--x,150px),var(--y,-160px)) rotate(var(--r,150deg)) scale(.9)}}
+@keyframes particulaDer{0%{opacity:0;transform:translate(0,0) rotate(0deg) scale(.55)}12%{opacity:var(--op,.55)}72%{opacity:calc(var(--op,.55)*.7)}100%{opacity:0;transform:translate(var(--x,-150px),var(--y,160px)) rotate(var(--r,-150deg)) scale(.9)}}
+@media(max-width:760px){.botanica-particula.hoja{width:7px;height:13px}.botanica-particulas.izq .botanica-particula{left:45px;bottom:70px}.botanica-particulas.der .botanica-particula{right:45px;top:70px}}
+@media(prefers-reduced-motion:reduce){.botanica-particulas{display:none}}
+</style>
+
 </head>
 
 <body>
@@ -3382,6 +3398,22 @@ input[placeholder*="acompanante" i]{
   <div class="mancha mancha-abajo"></div>
   <div class="linea-vertical linea-izquierda"></div>
   <div class="linea-vertical linea-derecha"></div>
+
+
+  <div class="botanica-particulas izq" aria-hidden="true">
+    <i class="botanica-particula hoja" style="--dur:8.6s;--delay:.2s;--x:145px;--y:-175px;--r:190deg;--op:.48"></i>
+    <i class="botanica-particula mota" style="--dur:7.2s;--delay:1.5s;--x:205px;--y:-110px;--r:90deg;--op:.55"></i>
+    <i class="botanica-particula crema" style="--dur:9.4s;--delay:2.8s;--x:120px;--y:-220px;--r:220deg;--op:.62"></i>
+    <i class="botanica-particula hoja" style="--dur:10.2s;--delay:4.1s;--x:235px;--y:-145px;--r:260deg;--op:.38"></i>
+    <i class="botanica-particula mota" style="--dur:8.1s;--delay:5.4s;--x:175px;--y:-205px;--r:120deg;--op:.48"></i>
+  </div>
+  <div class="botanica-particulas der" aria-hidden="true">
+    <i class="botanica-particula hoja" style="--dur:9.1s;--delay:.8s;--x:-150px;--y:180px;--r:-185deg;--op:.46"></i>
+    <i class="botanica-particula crema" style="--dur:7.7s;--delay:2.1s;--x:-215px;--y:115px;--r:-100deg;--op:.60"></i>
+    <i class="botanica-particula mota" style="--dur:10s;--delay:3.4s;--x:-125px;--y:225px;--r:-210deg;--op:.50"></i>
+    <i class="botanica-particula hoja" style="--dur:8.4s;--delay:4.8s;--x:-230px;--y:150px;--r:-250deg;--op:.36"></i>
+    <i class="botanica-particula mota" style="--dur:9.6s;--delay:6s;--x:-180px;--y:205px;--r:-130deg;--op:.46"></i>
+  </div>
 
   <img class="botanica-png botanica-png-derecha" src="botanica-derecha.webp" alt="" aria-hidden="true">
 
