@@ -3079,6 +3079,17 @@ body{background:var(--warm-white);color:var(--brown-dark)}
 }
 </style>
 
+
+<style>
+/* V17 · eliminar indicador de scroll heredado duplicado */
+.segunda-seccion > .desliza,
+.segunda-seccion > .flecha,
+.segunda-seccion .scroll-indicator:not(.historia-scroll),
+.segunda-seccion .scroll-cue:not(.historia-scroll){
+  display:none !important;
+}
+</style>
+
 </head>
 
 <body>
