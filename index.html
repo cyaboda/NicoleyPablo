@@ -3427,6 +3427,99 @@ input[placeholder*="acompanante" i]{
 .final-seccion .final-etiqueta,.final-seccion .final-titulo,.final-seccion .final-texto,.final-seccion .final-nombres,.final-seccion .final-fecha,.final-seccion .final-cierre,.final-seccion .final-monograma{color:#fff!important}
 @media(max-width:700px){.portada{background-position:58% center!important}.recomendaciones-card{padding:34px 24px 28px;border-radius:22px}.recomendaciones-card li{font-size:17px}}
 </style>
+
+<style id="ajustes-personales-nicole-pablo">
+/* 1 · PORTADA: liberar visualmente a la pareja */
+@media (min-width: 801px){
+  .portada .contenido{
+    transform:translateX(clamp(250px, 23vw, 410px)) !important;
+  }
+}
+@media (max-width: 800px){
+  .portada .contenido{
+    transform:translateX(13vw) !important;
+    width:76vw !important;
+    max-width:430px !important;
+  }
+}
+
+/* 2/3 · PARTÍCULAS BOTÁNICAS */
+.particulas-ambiente{
+  position:absolute;
+  inset:0;
+  overflow:hidden;
+  pointer-events:none;
+  z-index:1;
+}
+.particula-ambiente{
+  position:absolute;
+  left:var(--x);
+  top:var(--y);
+  width:var(--s);
+  height:calc(var(--s) * .48);
+  border-radius:100% 0 100% 0;
+  background:currentColor;
+  opacity:var(--o);
+  transform:rotate(var(--r));
+  animation:flotarParticula var(--d) ease-in-out var(--delay) infinite alternate;
+  will-change:transform,opacity;
+}
+.portada .particulas-ambiente{
+  color:#e9ecd5;
+  z-index:2;
+}
+.regalos-seccion .particulas-ambiente{
+  color:#7b845e;
+  z-index:0;
+}
+.regalos-seccion > *:not(.particulas-ambiente){
+  position:relative;
+  z-index:2;
+}
+@keyframes flotarParticula{
+  0%{transform:translate3d(0,0,0) rotate(var(--r));opacity:calc(var(--o) * .72)}
+  50%{opacity:var(--o)}
+  100%{transform:translate3d(var(--dx),var(--dy),0) rotate(calc(var(--r) + 38deg));opacity:calc(var(--o) * .5)}
+}
+@media (prefers-reduced-motion:reduce){
+  .particula-ambiente{animation:none}
+}
+
+/* 3 · REGALOS: recuperar nota y botón */
+.regalos-seccion .regalos-pregunta,
+.regalos-seccion .nota-regalo-pregunta,
+.regalos-seccion .regalo-nota-pregunta{
+  color:#46513b !important;
+  opacity:1 !important;
+}
+.regalos-seccion .regalos-nota-btn,
+.regalos-seccion .nota-regalo-btn,
+.regalos-seccion .btn-nota,
+.regalos-seccion button[id*="nota" i],
+.regalos-seccion button[onclick*="nota" i]{
+  color:#fff !important;
+  background:#737b55 !important;
+  border-color:#737b55 !important;
+  opacity:1 !important;
+}
+
+/* 4 · POPUP: scroll funcional en pantallas muy pequeñas, barra invisible */
+.recomendaciones-card{
+  scrollbar-width:none !important;
+  -ms-overflow-style:none !important;
+}
+.recomendaciones-card::-webkit-scrollbar{
+  width:0 !important;
+  height:0 !important;
+  display:none !important;
+}
+
+/* 5 · quitar solo N♡P final */
+.final-monograma{
+  display:none !important;
+}
+</style>
+
 </head>
 
 <body>
@@ -3443,7 +3536,7 @@ input[placeholder*="acompanante" i]{
 ></button>
 
 
-<section class="portada" id="portada">
+<section class="portada" id="portada"><div class="particulas-ambiente" aria-hidden="true"><i class="particula-ambiente" style="--x:6%;--y:10%;--s:8px;--o:0.22;--r:-28deg;--dx:22px;--dy:26px;--d:8s;--delay:-2s"></i><i class="particula-ambiente" style="--x:15%;--y:72%;--s:5px;--o:0.18;--r:18deg;--dx:-18px;--dy:-24px;--d:10s;--delay:-5s"></i><i class="particula-ambiente" style="--x:24%;--y:31%;--s:7px;--o:0.16;--r:48deg;--dx:20px;--dy:-18px;--d:11s;--delay:-7s"></i><i class="particula-ambiente" style="--x:34%;--y:84%;--s:9px;--o:0.14;--r:-42deg;--dx:-26px;--dy:-28px;--d:13s;--delay:-3s"></i><i class="particula-ambiente" style="--x:43%;--y:16%;--s:5px;--o:0.22;--r:25deg;--dx:16px;--dy:24px;--d:9s;--delay:-6s"></i><i class="particula-ambiente" style="--x:51%;--y:61%;--s:8px;--o:0.15;--r:-12deg;--dx:-18px;--dy:-26px;--d:12s;--delay:-9s"></i><i class="particula-ambiente" style="--x:61%;--y:27%;--s:6px;--o:0.18;--r:57deg;--dx:22px;--dy:-20px;--d:10s;--delay:-4s"></i><i class="particula-ambiente" style="--x:69%;--y:78%;--s:5px;--o:0.19;--r:-32deg;--dx:-18px;--dy:-22px;--d:9s;--delay:-8s"></i><i class="particula-ambiente" style="--x:77%;--y:12%;--s:8px;--o:0.15;--r:14deg;--dx:24px;--dy:28px;--d:13s;--delay:-10s"></i><i class="particula-ambiente" style="--x:84%;--y:52%;--s:6px;--o:0.21;--r:39deg;--dx:-22px;--dy:-25px;--d:11s;--delay:-5s"></i><i class="particula-ambiente" style="--x:92%;--y:24%;--s:5px;--o:0.17;--r:-55deg;--dx:-18px;--dy:22px;--d:10s;--delay:-7s"></i><i class="particula-ambiente" style="--x:95%;--y:86%;--s:8px;--o:0.13;--r:28deg;--dx:-24px;--dy:-30px;--d:14s;--delay:-11s"></i><i class="particula-ambiente" style="--x:11%;--y:44%;--s:4px;--o:0.18;--r:62deg;--dx:14px;--dy:-22px;--d:8s;--delay:-3s"></i><i class="particula-ambiente" style="--x:29%;--y:7%;--s:5px;--o:0.16;--r:-18deg;--dx:18px;--dy:18px;--d:10s;--delay:-8s"></i><i class="particula-ambiente" style="--x:56%;--y:91%;--s:6px;--o:0.17;--r:44deg;--dx:-20px;--dy:-28px;--d:12s;--delay:-6s"></i><i class="particula-ambiente" style="--x:73%;--y:43%;--s:4px;--o:0.2;--r:-47deg;--dx:16px;--dy:22px;--d:9s;--delay:-9s"></i><i class="particula-ambiente" style="--x:88%;--y:68%;--s:7px;--o:0.14;--r:21deg;--dx:-18px;--dy:-24px;--d:13s;--delay:-4s"></i><i class="particula-ambiente" style="--x:39%;--y:48%;--s:4px;--o:0.18;--r:-65deg;--dx:15px;--dy:18px;--d:9s;--delay:-10s"></i></div>
 
   <div class="mancha mancha-arriba"></div>
   <div class="mancha mancha-abajo"></div>
@@ -3759,7 +3852,7 @@ input[placeholder*="acompanante" i]{
 </section>
 
 
-<section class="regalos-seccion scroll-section" id="regalosSeccion">
+<section class="regalos-seccion scroll-section" id="regalosSeccion"><div class="particulas-ambiente" aria-hidden="true"><i class="particula-ambiente" style="--x:6%;--y:10%;--s:8px;--o:0.22;--r:-28deg;--dx:22px;--dy:26px;--d:8s;--delay:-2s"></i><i class="particula-ambiente" style="--x:15%;--y:72%;--s:5px;--o:0.18;--r:18deg;--dx:-18px;--dy:-24px;--d:10s;--delay:-5s"></i><i class="particula-ambiente" style="--x:24%;--y:31%;--s:7px;--o:0.16;--r:48deg;--dx:20px;--dy:-18px;--d:11s;--delay:-7s"></i><i class="particula-ambiente" style="--x:34%;--y:84%;--s:9px;--o:0.14;--r:-42deg;--dx:-26px;--dy:-28px;--d:13s;--delay:-3s"></i><i class="particula-ambiente" style="--x:43%;--y:16%;--s:5px;--o:0.22;--r:25deg;--dx:16px;--dy:24px;--d:9s;--delay:-6s"></i><i class="particula-ambiente" style="--x:51%;--y:61%;--s:8px;--o:0.15;--r:-12deg;--dx:-18px;--dy:-26px;--d:12s;--delay:-9s"></i><i class="particula-ambiente" style="--x:61%;--y:27%;--s:6px;--o:0.18;--r:57deg;--dx:22px;--dy:-20px;--d:10s;--delay:-4s"></i><i class="particula-ambiente" style="--x:69%;--y:78%;--s:5px;--o:0.19;--r:-32deg;--dx:-18px;--dy:-22px;--d:9s;--delay:-8s"></i><i class="particula-ambiente" style="--x:77%;--y:12%;--s:8px;--o:0.15;--r:14deg;--dx:24px;--dy:28px;--d:13s;--delay:-10s"></i><i class="particula-ambiente" style="--x:84%;--y:52%;--s:6px;--o:0.21;--r:39deg;--dx:-22px;--dy:-25px;--d:11s;--delay:-5s"></i><i class="particula-ambiente" style="--x:92%;--y:24%;--s:5px;--o:0.17;--r:-55deg;--dx:-18px;--dy:22px;--d:10s;--delay:-7s"></i><i class="particula-ambiente" style="--x:95%;--y:86%;--s:8px;--o:0.13;--r:28deg;--dx:-24px;--dy:-30px;--d:14s;--delay:-11s"></i><i class="particula-ambiente" style="--x:11%;--y:44%;--s:4px;--o:0.18;--r:62deg;--dx:14px;--dy:-22px;--d:8s;--delay:-3s"></i><i class="particula-ambiente" style="--x:29%;--y:7%;--s:5px;--o:0.16;--r:-18deg;--dx:18px;--dy:18px;--d:10s;--delay:-8s"></i><i class="particula-ambiente" style="--x:56%;--y:91%;--s:6px;--o:0.17;--r:44deg;--dx:-20px;--dy:-28px;--d:12s;--delay:-6s"></i><i class="particula-ambiente" style="--x:73%;--y:43%;--s:4px;--o:0.2;--r:-47deg;--dx:16px;--dy:22px;--d:9s;--delay:-9s"></i><i class="particula-ambiente" style="--x:88%;--y:68%;--s:7px;--o:0.14;--r:21deg;--dx:-18px;--dy:-24px;--d:13s;--delay:-4s"></i><i class="particula-ambiente" style="--x:39%;--y:48%;--s:4px;--o:0.18;--r:-65deg;--dx:15px;--dy:18px;--d:9s;--delay:-10s"></i></div>
 
   <div class="scroll-botanical botanica-izq">
     <svg viewBox="0 0 260 540">
@@ -3811,7 +3904,7 @@ input[placeholder*="acompanante" i]{
 
     <div class="regalo-nota-bloque">
       <p class="regalo-nota-pregunta">
-        ¿Deseas dejarnos una nota sobre tu regalo?
+        <span class="nota-regalo-pregunta">¿Deseas dejarnos una nota sobre tu regalo?</span>
       </p>
 
       <button class="regalo-nota-boton" id="abrirNotaRegalo" type="button">
