@@ -3558,16 +3558,8 @@ input[placeholder*="acompanante" i]{
    REGALOS · centrado, compacto y partículas visibles
 ========================================================= */
 .regalos-seccion{
-  position:relative !important;
-  min-height:100dvh !important;
-  height:100dvh !important;
-  overflow:hidden !important;
-  display:flex !important;
-  flex-direction:column !important;
-  align-items:center !important;
-  justify-content:center !important;
-  padding:28px 20px !important;
-  box-sizing:border-box !important;
+  /* La estructura/altura/display quedan a cargo del CSS original.
+     Así permanece oculta antes de abrir y vuelve a ocupar una sola pantalla al mostrarse. */
 }
 .regalos-seccion > *:not(.particulas-ambiente){
   margin-left:auto !important;
@@ -3732,9 +3724,6 @@ input[placeholder*="acompanante" i]{
 }
 
 @media(max-width:700px){
-  .regalos-seccion{
-    padding:20px 16px !important;
-  }
   .banco-modal-card{
     padding:38px 24px 26px;
   }
@@ -3744,17 +3733,11 @@ input[placeholder*="acompanante" i]{
 
 
 <style id="fix-regalos-layout">
-/* Restaurar el flujo normal de Regalos sin perder los cambios nuevos */
-.regalos-seccion{
-  position:relative !important;
-  height:auto !important;
-  min-height:100vh !important;
-  overflow:hidden !important;
-  display:block !important;
-  box-sizing:border-box !important;
-}
+/* FIX DEFINITIVO:
+   no forzar display, height ni min-height de Regalos.
+   El CSS original la mantiene oculta antes de ABRIR INVITACIÓN
+   y el JS original la muestra en su lugar correcto después de Dress Code. */
 
-/* Partículas como fondo, sin ocupar espacio en el documento */
 .regalos-seccion .particulas-ambiente{
   position:absolute !important;
   inset:0 !important;
@@ -3762,24 +3745,18 @@ input[placeholder*="acompanante" i]{
   color:#66704d !important;
   pointer-events:none !important;
 }
+
 .regalos-seccion > *:not(.particulas-ambiente){
   position:relative;
   z-index:2;
 }
 
-/* Los datos bancarios siguen en el popup, no desplegados en la página */
+/* Los datos bancarios viven únicamente en el popup. */
 .regalos-seccion .datos-transferencia,
 .regalos-seccion #datosTransferencia,
 .regalos-seccion .banco-datos,
 .regalos-seccion [class*="datos-banco"]{
   display:none !important;
-}
-
-@media(max-width:700px){
-  .regalos-seccion{
-    height:auto !important;
-    min-height:100dvh !important;
-  }
 }
 </style>
 
