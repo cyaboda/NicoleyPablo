@@ -3376,6 +3376,57 @@ input[placeholder*="acompanante" i]{
 @media(prefers-reduced-motion:reduce){.botanica-particulas{display:none}}
 </style>
 
+<style>
+/* CAMBIOS CLIENTE */
+.portada{background:linear-gradient(rgba(32,34,24,.45),rgba(32,34,24,.58)),url("F3.jpg") center 43%/cover no-repeat!important;color:#f7f4ec!important}
+.portada .mancha,.portada .linea-vertical,.portada .botanica-png,.portada .botanica-particulas{display:none!important}
+.portada .contenido{z-index:3}.portada .sobrelinea,.portada .nombres,.portada #cupos{color:#f7f4ec!important}
+.portada #nombreInvitado{display:none!important}.portada .separador{border-color:rgba(255,255,255,.48)!important}
+.portada-fecha-cliente{margin:14px 0 20px;font:700 11px Arial,sans-serif;letter-spacing:.34em;color:#f7f4ec}
+.portada .boton{background:rgba(241,242,234,.95)!important;color:#3b422f!important;box-shadow:0 12px 34px rgba(0,0,0,.18)!important}
+.segunda-seccion{display:none!important}
+.tercera-subtitulo{font-size:11px!important;letter-spacing:.34em!important;margin-top:18px!important}
+
+/* más aire entre 15:30 y HORA DE LA CEREMONIA */
+.evento-hora{margin-bottom:16px!important}
+.evento-hora + *{margin-top:12px!important}
+
+/* Regalos blanco salvia */
+.regalos-seccion{background:#F1F2EA!important;color:#46513b!important}
+.regalos-titulo,.regalos-texto,.regalos-nota,.regalos-seccion .dato-publico strong{color:#46513b!important}
+.regalos-icono{color:#687553!important;border-color:rgba(70,81,59,.28)!important}
+.regalos-linea{background:rgba(70,81,59,.30)!important}
+.regalos-seccion .banco-preview{background:#737b55!important;color:#fff!important;border-color:#737b55!important}
+.regalos-seccion .banco-preview-nombre,.regalos-seccion .banco-preview-titular{color:#fff!important}
+.regalos-seccion .regalos-boton{background:#737b55!important;color:#fff!important}
+.regalos-seccion .dato-publico{border-bottom-color:rgba(70,81,59,.18)!important}
+.regalos-seccion .dato-publico span{color:#6d765d!important}
+
+/* RSVP */
+.rsvp-fecha-limite{margin:13px auto 0;font:700 9px Arial,sans-serif;letter-spacing:.17em;text-transform:uppercase;color:rgba(255,255,255,.72)}
+
+/* Popup */
+.recomendaciones-modal{position:fixed;inset:0;z-index:99999;display:grid;place-items:center;padding:22px;opacity:0;visibility:hidden;transition:.35s}
+.recomendaciones-modal.activo{opacity:1;visibility:visible}
+.recomendaciones-backdrop{position:absolute;inset:0;background:rgba(32,35,25,.72);backdrop-filter:blur(9px)}
+.recomendaciones-card{position:relative;width:min(560px,92vw);max-height:88dvh;overflow:auto;padding:42px;border-radius:28px;background:#F1F2EA;color:#46513b;box-shadow:0 28px 80px rgba(0,0,0,.28);text-align:center;transform:translateY(18px) scale(.98);transition:.45s}
+.recomendaciones-modal.activo .recomendaciones-card{transform:none}
+.recomendaciones-icono{width:48px;height:48px;margin:0 auto 12px;border:1px solid rgba(70,81,59,.25);border-radius:50%;display:grid;place-items:center}
+.recomendaciones-kicker,.recomendaciones-subtitulo{font:700 9px Arial,sans-serif;letter-spacing:.28em}
+.recomendaciones-card h2{margin:13px 0 8px;font-family:"Cormorant Garamond",Georgia,serif;font-size:clamp(34px,5vw,52px);line-height:1;font-weight:500}
+.recomendaciones-intro{margin:0;font-family:"Cormorant Garamond",Georgia,serif;font-size:21px;font-style:italic}
+.recomendaciones-linea{width:80px;height:1px;background:rgba(70,81,59,.28);margin:22px auto}
+.recomendaciones-card ul{margin:18px 0 26px;padding:0;list-style:none;text-align:left}
+.recomendaciones-card li{position:relative;padding:10px 0 10px 24px;border-bottom:1px solid rgba(70,81,59,.12);font-family:"Cormorant Garamond",Georgia,serif;font-size:18px;line-height:1.35}
+.recomendaciones-card li:before{content:"•";position:absolute;left:5px;color:#7a835d}
+#cerrarRecomendaciones{border:0;border-radius:999px;padding:15px 30px;background:#737b55;color:#fff;font:700 9px Arial,sans-serif;letter-spacing:.25em;cursor:pointer}
+
+/* Cierre F1 */
+.final-seccion{background:linear-gradient(rgba(35,38,28,.56),rgba(35,38,28,.66)),url("F1.jpg") center center/cover no-repeat!important;color:#fff!important}
+.final-seccion .final-botanica,.final-seccion .final-velo-animado{display:none!important}
+.final-seccion .final-etiqueta,.final-seccion .final-titulo,.final-seccion .final-texto,.final-seccion .final-nombres,.final-seccion .final-fecha,.final-seccion .final-cierre,.final-seccion .final-monograma{color:#fff!important}
+@media(max-width:700px){.portada{background-position:58% center!important}.recomendaciones-card{padding:34px 24px 28px;border-radius:22px}.recomendaciones-card li{font-size:17px}}
+</style>
 </head>
 
 <body>
@@ -3434,15 +3485,15 @@ input[placeholder*="acompanante" i]{
     <div id="cargando">Preparando tu invitación...</div>
 
     <div id="contenidoInvitado">
-      <div class="texto-invitacion">Invitación especial para</div>
-      <div id="nombreInvitado"></div>
+      <div class="portada-fecha-cliente">05.12.2026</div>
+      <div id="nombreInvitado" aria-hidden="true"></div>
       <div id="cupos"></div>
 
       <button class="boton" id="abrirInvitacion" type="button">
         ABRIR INVITACIÓN
       </button>
 
-      <div class="detalle-inferior">Nuestra historia comienza aquí</div>
+      
     </div>
 
     <div id="error">
@@ -3479,7 +3530,7 @@ input[placeholder*="acompanante" i]{
   <div class="historia-firma">
     <div>NICOLE<br>&amp; PABLO</div>
     <span></span>
-    <small>12 DICIEMBRE 2026</small>
+    <small>05 DICIEMBRE 2026</small>
   </div>
 
   <div class="historia-scroll">
@@ -3520,8 +3571,8 @@ input[placeholder*="acompanante" i]{
 
   <div class="tercera-contenido">
     <div class="tercera-etiqueta">La espera casi termina</div>
-    <h2 class="tercera-titulo">Faltan</h2>
-    <div class="tercera-subtitulo">para celebrar nuestro amor faltan</div>
+    <h2 class="tercera-titulo" aria-hidden="true"></h2>
+    <div class="tercera-subtitulo">Faltan</div>
 
     <div class="contador">
       <div class="contador-item">
@@ -3544,7 +3595,7 @@ input[placeholder*="acompanante" i]{
 
     <div class="contador-separador"></div>
     <div class="gran-dia">para nuestro gran día</div>
-    <div class="fecha-pequena">12 de diciembre de 2026</div>
+    <div class="fecha-pequena">5 de diciembre de 2026</div>
   </div>
 
 </section>
@@ -3601,7 +3652,7 @@ input[placeholder*="acompanante" i]{
 
     </div>
 
-    <div class="evento-nota">12 · 12 · 2026</div>
+    <div class="evento-nota">05 · 12 · 2026</div>
 
   </div>
 
@@ -3733,7 +3784,7 @@ input[placeholder*="acompanante" i]{
   <div class="regalos-contenido">
 
     <div class="regalos-icono">♡</div>
-    <div class="regalos-etiqueta">UN DETALLE PARA NOSOTROS</div>
+    
     <h2 class="regalos-titulo">Regalos</h2>
 
     <div class="regalos-texto">
@@ -3807,6 +3858,7 @@ input[placeholder*="acompanante" i]{
     <div class="rsvp-etiqueta">NUESTRO GRAN DÍA</div>
     <h2 class="rsvp-titulo">Confirma tu asistencia</h2>
     <div class="rsvp-subtitulo">Nos encantará compartir este momento contigo.</div>
+    <div class="rsvp-fecha-limite">Confirma tu asistencia hasta el 15 de octubre de 2026.</div>
     <div class="rsvp-linea"></div>
 
     <div class="rsvp-panel" id="rsvpPanel">
@@ -3865,6 +3917,20 @@ input[placeholder*="acompanante" i]{
 
 
 
+<div class="recomendaciones-modal" id="recomendacionesModal" aria-hidden="true">
+<div class="recomendaciones-backdrop"></div>
+<div class="recomendaciones-card" role="dialog" aria-modal="true">
+<div class="recomendaciones-icono">♡</div><div class="recomendaciones-kicker">NICOLE &amp; PABLO</div>
+<h2>¡Nos vemos en el gran día!</h2><p class="recomendaciones-intro">Gracias por confirmar tu asistencia.</p>
+<div class="recomendaciones-linea"></div><div class="recomendaciones-subtitulo">ALGUNAS RECOMENDACIONES</div>
+<ul>
+<li>Agradecemos tu puntualidad.</li>
+<li>Contamos con espacios de parqueadero dentro de la Quinta.</li>
+<li>Tendremos espacios al aire libre y superficies naturales. Si llevas tacones, te recomendamos que no sean tipo aguja.</li>
+<li>Olvídate de todo y disfruta con nosotros el Gran Día.</li>
+</ul>
+<button type="button" id="cerrarRecomendaciones">CONTINUAR</button>
+</div></div>
 <section class="final-seccion" id="finalSeccion">
 
   <div class="final-velo-animado" aria-hidden="true"></div>
@@ -3919,7 +3985,7 @@ input[placeholder*="acompanante" i]{
     </div>
 
     <div class="final-fecha">
-      12 · 12 · 2026
+      05 · 12 · 2026
     </div>
 
     <div class="final-cierre" id="finalCierre">
@@ -3927,7 +3993,7 @@ input[placeholder*="acompanante" i]{
     </div>
 
     <div class="final-monograma">
-      C♡A
+      N♡P
     </div>
 
   </div>
@@ -4212,7 +4278,7 @@ function abrirGoogleCalendar() {
     "Quinta La Corteza · César Enrique Balseca y Agustín Mora Bowen, 170810 Quito";
 
   const descripcion =
-    "Acompáñanos a celebrar nuestra boda. Nicole & Pablo · 12 de diciembre de 2026.";
+    "Acompáñanos a celebrar nuestra boda. Nicole & Pablo · 5 de diciembre de 2026.";
 
   /*
     Ecuador UTC-5:
@@ -4224,10 +4290,10 @@ function abrirGoogleCalendar() {
   */
 
   const inicio =
-    "20261212T203000Z";
+    "20261205T203000Z";
 
   const fin =
-    "20261212T213000Z";
+    "20261205T213000Z";
 
   const url =
     "https://calendar.google.com/calendar/render" +
@@ -4490,7 +4556,7 @@ document
 
         document
         .getElementById("segundaSeccion")
-        .style.display = "flex";
+        .style.display = "none";
 
         document
         .getElementById("cuentaRegresiva")
@@ -4518,8 +4584,8 @@ document
           function () {
 
             document
-            .getElementById("segundaSeccion")
-            .classList.add("visible");
+            .getElementById("cuentaRegresiva")
+            .scrollIntoView({block:"start"});
 
             prepararBotanicasScroll();
             actualizarBotanicasScroll();
@@ -4944,6 +5010,17 @@ rsvpConfirmar.addEventListener(
 );
 
 async function guardarRSVP() {
+  const MODO_PRUEBA_RSVP = true;
+  if (MODO_PRUEBA_RSVP) {
+    if (!respuestaRSVP) { rsvpMensaje.textContent="Selecciona una respuesta."; return; }
+    invitadoActual.estado = respuestaRSVP === "SI" ? "CONFIRMADO" : "NO ASISTE";
+    invitadoActual.asisten = respuestaRSVP === "SI" ? cantidadAsistentes : 0;
+    invitadoActual.acompanantes = "";
+    mostrarRespuestaGuardada(false);
+    if (respuestaRSVP === "SI") abrirRecomendaciones();
+    else setTimeout(mostrarFinalAgradecimiento,700);
+    return;
+  }
 
   if (!respuestaRSVP) {
 
@@ -5137,7 +5214,7 @@ function mostrarRespuestaGuardada(desdeConfirmacion) {
     document
     .getElementById("finalCierre")
     .textContent =
-    "Nos vemos el 14 de noviembre ♡";
+    "Nos vemos el 5 de diciembre ♡";
 
   } else {
 
@@ -5393,7 +5470,7 @@ if (botonDatosPublicos && datosPublicosRegalo) {
 
 const fechaBoda =
 new Date(
-  "2026-12-12T00:00:00-05:00"
+  "2026-12-05T00:00:00-05:00"
 );
 
 function actualizarContador() {
@@ -5504,6 +5581,18 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 </script>
 
+<script>
+function abrirRecomendaciones(){
+ const m=document.getElementById("recomendacionesModal"); if(!m)return;
+ m.classList.add("activo");m.setAttribute("aria-hidden","false");document.body.style.overflow="hidden";
+}
+function mostrarFinalAgradecimiento(){
+ const m=document.getElementById("recomendacionesModal");if(m){m.classList.remove("activo");m.setAttribute("aria-hidden","true")}
+ document.body.style.overflow="";
+ const f=document.getElementById("finalSeccion");if(f){f.style.display="flex";setTimeout(()=>f.scrollIntoView({behavior:"smooth",block:"start"}),120)}
+}
+document.addEventListener("DOMContentLoaded",()=>{const b=document.getElementById("cerrarRecomendaciones");if(b)b.addEventListener("click",mostrarFinalAgradecimiento)});
+</script>
 </body>
 
 </html>
