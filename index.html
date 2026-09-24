@@ -3520,6 +3520,228 @@ input[placeholder*="acompanante" i]{
 }
 </style>
 
+
+<style id="ajustes-finales-nicole-pablo">
+/* =========================================================
+   PORTADA · composición final
+========================================================= */
+.portada .contenido{
+  position:relative !important;
+  left:auto !important;
+  right:auto !important;
+  width:min(92vw, 620px) !important;
+  max-width:620px !important;
+  margin:0 auto !important;
+  transform:translateY(6vh) !important;
+}
+.portada .sobrelinea{
+  position:absolute !important;
+  left:50% !important;
+  top:-22vh !important;
+  transform:translateX(-50%) !important;
+  width:max-content !important;
+  margin:0 !important;
+  z-index:5 !important;
+}
+@media(max-width:800px){
+  .portada .contenido{
+    width:88vw !important;
+    max-width:430px !important;
+    transform:translateY(5vh) !important;
+  }
+  .portada .sobrelinea{
+    top:-18vh !important;
+  }
+}
+
+/* =========================================================
+   REGALOS · centrado, compacto y partículas visibles
+========================================================= */
+.regalos-seccion{
+  position:relative !important;
+  min-height:100dvh !important;
+  height:100dvh !important;
+  overflow:hidden !important;
+  display:flex !important;
+  flex-direction:column !important;
+  align-items:center !important;
+  justify-content:center !important;
+  padding:28px 20px !important;
+  box-sizing:border-box !important;
+}
+.regalos-seccion > *:not(.particulas-ambiente){
+  margin-left:auto !important;
+  margin-right:auto !important;
+  text-align:center !important;
+}
+.regalos-seccion .particulas-ambiente{
+  color:#66704d !important;
+  opacity:1 !important;
+}
+.regalos-seccion .particula-ambiente{
+  opacity:calc(var(--o) * 1.65) !important;
+}
+.regalos-seccion .regalos-titulo{
+  margin-top:4px !important;
+  margin-bottom:8px !important;
+}
+.regalos-seccion .regalos-texto{
+  margin-top:4px !important;
+  margin-bottom:10px !important;
+}
+.regalos-seccion .regalos-linea{
+  margin-top:10px !important;
+  margin-bottom:14px !important;
+}
+.regalos-seccion .banco-preview{
+  margin-top:8px !important;
+  margin-bottom:10px !important;
+}
+.regalos-seccion .regalos-boton{
+  margin-top:6px !important;
+  margin-bottom:10px !important;
+}
+.regalos-seccion .nota-regalo-pregunta{
+  display:block !important;
+  margin:10px auto 7px !important;
+  color:#46513b !important;
+}
+.regalos-seccion .regalos-cierre,
+.regalos-seccion .regalos-final,
+.regalos-seccion [class*="cierre"]{
+  margin-top:12px !important;
+}
+
+/* Los datos bancarios ya no expanden la sección */
+.regalos-seccion .datos-transferencia,
+.regalos-seccion #datosTransferencia,
+.regalos-seccion .banco-datos,
+.regalos-seccion [class*="datos-banco"]{
+  display:none !important;
+}
+
+/* =========================================================
+   MODAL BANCARIO
+========================================================= */
+.banco-modal{
+  position:fixed;
+  inset:0;
+  z-index:100000;
+  display:grid;
+  place-items:center;
+  padding:22px;
+  opacity:0;
+  visibility:hidden;
+  transition:opacity .28s ease,visibility .28s ease;
+}
+.banco-modal.activo{opacity:1;visibility:visible}
+.banco-modal-backdrop{
+  position:absolute;inset:0;
+  background:rgba(31,34,24,.72);
+  backdrop-filter:blur(8px);
+}
+.banco-modal-card{
+  position:relative;
+  width:min(500px,92vw);
+  padding:40px 34px 30px;
+  border-radius:26px;
+  background:#F1F2EA;
+  color:#46513b;
+  box-shadow:0 28px 80px rgba(0,0,0,.27);
+}
+.modal-cerrar{
+  position:absolute;
+  top:13px;
+  right:15px;
+  width:36px;
+  height:36px;
+  border:0;
+  border-radius:50%;
+  background:transparent;
+  color:#46513b;
+  font:300 27px/1 Arial,sans-serif;
+  cursor:pointer;
+  display:grid;
+  place-items:center;
+}
+.banco-modal-kicker{
+  text-align:center;
+  font:700 9px Arial,sans-serif;
+  letter-spacing:.28em;
+  margin-bottom:8px;
+}
+.banco-modal-card h2{
+  margin:0 0 22px;
+  text-align:center;
+  font-family:"Cormorant Garamond",Georgia,serif;
+  font-size:38px;
+  font-weight:500;
+}
+.banco-modal-fila{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:24px;
+  padding:13px 0;
+  border-bottom:1px solid rgba(70,81,59,.16);
+}
+.banco-modal-fila span{
+  font:700 8px Arial,sans-serif;
+  letter-spacing:.20em;
+  color:#7a816c;
+  text-transform:uppercase;
+}
+.banco-modal-fila strong{
+  text-align:right;
+  font-family:"Cormorant Garamond",Georgia,serif;
+  font-size:21px;
+  color:#46513b;
+}
+
+/* =========================================================
+   POPUP RECOMENDACIONES · X para cerrar
+========================================================= */
+.recomendaciones-cerrar{
+  position:absolute;
+  top:13px;
+  right:15px;
+  z-index:4;
+  width:36px;
+  height:36px;
+  border:0;
+  border-radius:50%;
+  background:transparent;
+  color:#46513b;
+  font:300 27px/1 Arial,sans-serif;
+  cursor:pointer;
+  display:grid;
+  place-items:center;
+}
+
+/* Ocultar scrollbar sin perder respaldo de scroll */
+.recomendaciones-card,
+.banco-modal-card{
+  scrollbar-width:none !important;
+  -ms-overflow-style:none !important;
+}
+.recomendaciones-card::-webkit-scrollbar,
+.banco-modal-card::-webkit-scrollbar{
+  display:none !important;
+  width:0 !important;
+  height:0 !important;
+}
+
+@media(max-width:700px){
+  .regalos-seccion{
+    padding:20px 16px !important;
+  }
+  .banco-modal-card{
+    padding:38px 24px 26px;
+  }
+  .banco-modal-fila strong{font-size:19px}
+}
+</style>
+
 </head>
 
 <body>
@@ -4010,9 +4232,24 @@ input[placeholder*="acompanante" i]{
 
 
 
+
+<div class="banco-modal" id="bancoModal" aria-hidden="true">
+  <div class="banco-modal-backdrop" id="bancoModalBackdrop"></div>
+  <div class="banco-modal-card" role="dialog" aria-modal="true" aria-labelledby="bancoModalTitulo">
+    <button class="modal-cerrar" id="cerrarBancoModal" type="button" aria-label="Cerrar">×</button>
+    <div class="banco-modal-kicker">DATOS PARA TRANSFERENCIA</div>
+    <h2 id="bancoModalTitulo">Banco Pichincha</h2>
+    <div class="banco-modal-fila"><span>Tipo de cuenta</span><strong>Cuenta de ahorros</strong></div>
+    <div class="banco-modal-fila"><span>Número de cuenta</span><strong>2212909535</strong></div>
+    <div class="banco-modal-fila"><span>Titular</span><strong>Nicole Pinos</strong></div>
+    <div class="banco-modal-fila"><span>CI</span><strong>1720847357</strong></div>
+  </div>
+</div>
+
 <div class="recomendaciones-modal" id="recomendacionesModal" aria-hidden="true">
 <div class="recomendaciones-backdrop"></div>
 <div class="recomendaciones-card" role="dialog" aria-modal="true">
+<button class="recomendaciones-cerrar" id="cerrarRecomendacionesX" type="button" aria-label="Cerrar">×</button>
 <div class="recomendaciones-icono">♡</div><div class="recomendaciones-kicker">NICOLE &amp; PABLO</div>
 <h2>¡Nos vemos en el gran día!</h2><p class="recomendaciones-intro">Gracias por confirmar tu asistencia.</p>
 <div class="recomendaciones-linea"></div><div class="recomendaciones-subtitulo">ALGUNAS RECOMENDACIONES</div>
@@ -5686,6 +5923,70 @@ function mostrarFinalAgradecimiento(){
 }
 document.addEventListener("DOMContentLoaded",()=>{const b=document.getElementById("cerrarRecomendaciones");if(b)b.addEventListener("click",mostrarFinalAgradecimiento)});
 </script>
+
+<script id="ajustes-finales-js">
+document.addEventListener("DOMContentLoaded", function(){
+  const bancoModal = document.getElementById("bancoModal");
+  const cerrarBanco = document.getElementById("cerrarBancoModal");
+  const bancoBackdrop = document.getElementById("bancoModalBackdrop");
+
+  function abrirBancoModal(){
+    if(!bancoModal) return;
+    bancoModal.classList.add("activo");
+    bancoModal.setAttribute("aria-hidden","false");
+    document.body.style.overflow="hidden";
+  }
+  function cerrarBancoModalFn(){
+    if(!bancoModal) return;
+    bancoModal.classList.remove("activo");
+    bancoModal.setAttribute("aria-hidden","true");
+    document.body.style.overflow="";
+  }
+
+  /* Captura el botón existente sin cambiar su diseño. */
+  const candidatos = Array.from(document.querySelectorAll("button,a"));
+  const botonBanco = candidatos.find(function(el){
+    return (el.textContent || "").trim().toUpperCase().includes("VER DATOS PARA TRANSFERENCIA");
+  });
+  if(botonBanco){
+    /* Captura antes que el listener antiguo para impedir el despliegue inline. */
+    botonBanco.addEventListener("click", function(ev){
+      ev.preventDefault();
+      ev.stopImmediatePropagation();
+      abrirBancoModal();
+    }, true);
+  }
+
+  if(cerrarBanco) cerrarBanco.addEventListener("click", cerrarBancoModalFn);
+  if(bancoBackdrop) bancoBackdrop.addEventListener("click", cerrarBancoModalFn);
+
+  /* X del popup de recomendaciones: solo cierra, NO avanza al cierre F1. */
+  const cerrarRecomX = document.getElementById("cerrarRecomendacionesX");
+  if(cerrarRecomX){
+    cerrarRecomX.addEventListener("click", function(){
+      const modal = document.getElementById("recomendacionesModal");
+      if(modal){
+        modal.classList.remove("activo");
+        modal.setAttribute("aria-hidden","true");
+      }
+      document.body.style.overflow="";
+    });
+  }
+
+  document.addEventListener("keydown", function(ev){
+    if(ev.key === "Escape"){
+      cerrarBancoModalFn();
+      const rec = document.getElementById("recomendacionesModal");
+      if(rec && rec.classList.contains("activo")){
+        rec.classList.remove("activo");
+        rec.setAttribute("aria-hidden","true");
+        document.body.style.overflow="";
+      }
+    }
+  });
+});
+</script>
+
 </body>
 
 </html>
