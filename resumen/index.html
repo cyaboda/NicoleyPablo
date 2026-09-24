@@ -591,24 +591,41 @@
       display: block;
       width: max-content;
       max-width: calc(100% - 40px);
-      margin: 22px auto 0;
-      color: var(--muted);
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: .13em;
+      margin: 16px auto 0;
       text-decoration: none;
-      opacity: .72;
-      transition: opacity .18s ease, color .18s ease;
+      text-align: center;
+      color: rgba(35,48,31,.60);
+      opacity: .95;
+      transition: opacity .18s ease, color .18s ease, transform .18s ease;
+      line-height: 1.2;
+    }
+
+    .celea-signature .designed-by {
+      font-family: "DM Sans", sans-serif;
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      margin-right: 5px;
+    }
+
+    .celea-signature .celea-name {
+      font-family: "Playfair Display", serif;
+      font-size: 15px;
+      font-weight: 500;
+      letter-spacing: .025em;
+      font-style: italic;
     }
 
     .celea-signature:hover,
     .celea-signature:focus-visible {
       color: var(--sage-dark);
       opacity: 1;
+      transform: translateY(-1px);
     }
 
     .dashboard-signature {
-      margin-top: 26px;
+      margin-top: 18px;
       margin-bottom: 8px;
     }
 
@@ -640,7 +657,7 @@
         <p class="login-error" id="loginError"></p>
       </form>
     </div>
-    <a class="celea-signature" href="https://bycelea.com/" target="_blank" rel="noopener noreferrer" aria-label="Visitar by.celea">by.celea</a>
+    <a class="celea-signature" href="https://bycelea.com/" target="_blank" rel="noopener noreferrer" aria-label="Visitar by.celea"><span class="designed-by">Designed by.</span><span class="celea-name">Celea Studio</span></a>
   </section>
 
   <main class="app hidden" id="dashboard">
@@ -735,7 +752,7 @@
         <span id="updatedText">Actualizando…</span>
       </div>
 
-      <a class="celea-signature dashboard-signature" href="https://bycelea.com/" target="_blank" rel="noopener noreferrer" aria-label="Visitar by.celea">by.celea</a>
+      <a class="celea-signature dashboard-signature" href="https://bycelea.com/" target="_blank" rel="noopener noreferrer" aria-label="Visitar by.celea"><span class="designed-by">Designed by.</span><span class="celea-name">Celea Studio</span></a>
     </div>
   </main>
 
