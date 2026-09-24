@@ -4528,7 +4528,7 @@ input[placeholder*="acompanante" i]{
 ========================================================= */
 
 const API_URL =
-"https://script.google.com/macros/s/AKfycbz_-f9kBoM8sUsXhQ9BqC4MuiWM3H8QtZrAIO6-Fgw-GZsttL3mVH4GUk5mT_3ZqgwxcA/exec";
+"https://script.google.com/macros/s/AKfycbzXSNzgk3bSv90zB5SsLWS5oLVP-yoQIomQK6evFzBwZ1ec49YWuo3D3m1Epov5L3ampg/exec";
 
 const parametros =
 new URLSearchParams(window.location.search);
@@ -4864,20 +4864,45 @@ function consultaJSONP(
 
 async function cargarInvitado() {
 
-  /* DEMO NICOLE & PABLO */
-  recibirInvitado({
-    ok: true,
-    invitado: "Invitado de Prueba",
-    cupos: 2,
-    estado: "",
-    asisten: "",
-    acompanantes: "",
-    notaRegalo: ""
-  });
-  return;
+  if (!codigo) {
+    mostrarError();
+    return;
+  }
 
+  try {
+    const respuesta = await fetch(
+      API_URL +
+      "?action=invitado&codigo=" +
+      encodeURIComponent(codigo) +
+      "&t=" + Date.now(),
+      { method: "GET", cache: "no-store" }
+    );
+
+    const datos = await respuesta.json();
+
+    if (!datos || !datos.ok || !datos.invitado) {
+      mostrarError();
+      return;
+    }
+
+    /* Adaptamos la respuesta del backend Nicole & Pablo
+       al formato que ya utiliza visualmente la invitación. */
+    recibirInvitado({
+      ok: true,
+      codigo: datos.invitado.codigo,
+      invitado: datos.invitado.nombre,
+      cupos: datos.invitado.cupos,
+      estado: datos.invitado.estado || "",
+      asisten: datos.invitado.asisten || 0,
+      acompanantes: "",
+      notaRegalo: datos.invitado.nota || ""
+    });
+
+  } catch (error) {
+    console.error("Error cargando invitado:", error);
+    mostrarError();
+  }
 }
-
 
 /* =========================================================
    RECIBIR INVITADO
@@ -5455,117 +5480,71 @@ rsvpConfirmar.addEventListener(
 );
 
 async function guardarRSVP() {
-  const MODO_PRUEBA_RSVP = true;
-  if (MODO_PRUEBA_RSVP) {
-    if (!respuestaRSVP) { rsvpMensaje.textContent="Selecciona una respuesta."; return; }
-    invitadoActual.estado = respuestaRSVP === "SI" ? "CONFIRMADO" : "NO ASISTE";
-    invitadoActual.asisten = respuestaRSVP === "SI" ? cantidadAsistentes : 0;
-    invitadoActual.acompanantes = "";
-    mostrarRespuestaGuardada(false);
-    if (respuestaRSVP === "SI") abrirRecomendaciones();
-    else setTimeout(mostrarFinalAgradecimiento,700);
-    return;
-  }
 
   if (!respuestaRSVP) {
-
-    rsvpMensaje.textContent =
-    "Selecciona una respuesta.";
-
+    rsvpMensaje.textContent = "Selecciona una respuesta.";
     return;
-  }
-
-  let acompanantes = [];
-
-  if (respuestaRSVP === "SI") {
-
-    const campos =
-    document.querySelectorAll(
-      ".acompanante-campo"
-    );
-
-    let incompleto = false;
-
-    campos.forEach(
-      function (campo) {
-
-        const nombre =
-        campo.value.trim();
-
-        if (!nombre) {
-
-          incompleto = true;
-
-        } else {
-
-          acompanantes.push(nombre);
-
-        }
-
-      }
-    );
-
-    if (incompleto) {
-
-      rsvpMensaje.textContent =
-      "Escribe el nombre completo de cada acompañante.";
-
-      return;
-    }
-
   }
 
   rsvpConfirmar.disabled = true;
+  rsvpMensaje.textContent = "Guardando tu respuesta...";
 
-  rsvpMensaje.textContent =
-  "Guardando tu respuesta...";
+  const estado =
+    respuestaRSVP === "SI"
+    ? "CONFIRMADO"
+    : "NO ASISTE";
 
-  const callback =
-  "bodaRSVP_" +
-  Date.now();
-
-  const url =
-  API_URL +
-  "?accion=confirmar" +
-  "&codigo=" +
-  encodeURIComponent(codigo) +
-  "&respuesta=" +
-  encodeURIComponent(respuestaRSVP) +
-  "&asisten=" +
-  encodeURIComponent(
+  const asisten =
     respuestaRSVP === "SI"
     ? cantidadAsistentes
-    : 0
-  ) +
-  "&acompanantes=" +
-  encodeURIComponent(
-    acompanantes.join("|")
-  ) +
-  "&callback=" +
-  callback +
-  "&t=" +
-  Date.now();
+    : 0;
 
   try {
+    const respuesta = await fetch(API_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "text/plain;charset=utf-8"
+      },
+      body: JSON.stringify({
+        action: "rsvp",
+        codigo: codigo,
+        estado: estado,
+        asisten: asisten
+      })
+    });
 
-    const datos =
-    await consultaJSONP(
-      url,
-      callback,
-      10000
-    );
+    const datos = await respuesta.json();
 
-    recibirConfirmacion(datos);
+    if (!datos || !datos.ok) {
+      rsvpConfirmar.disabled = false;
+      rsvpMensaje.textContent =
+        datos && datos.error
+        ? datos.error
+        : "No pudimos guardar tu respuesta.";
+      return;
+    }
+
+    recibirConfirmacion({
+      ok: true,
+      estado: datos.estado,
+      asisten: datos.asisten,
+      acompanantes: ""
+    });
+
+    /* El popup de recomendaciones aparece únicamente
+       después de una confirmación positiva real. */
+    if (estado === "CONFIRMADO") {
+      setTimeout(abrirRecomendaciones, 250);
+    } else {
+      setTimeout(mostrarFinalAgradecimiento, 700);
+    }
 
   } catch (error) {
-
+    console.error("Error guardando RSVP:", error);
     rsvpConfirmar.disabled = false;
-
     rsvpMensaje.textContent =
-    "No pudimos guardar tu respuesta. Intenta nuevamente.";
-
+      "No pudimos guardar tu respuesta. Intenta nuevamente.";
   }
-
 }
 
 function recibirConfirmacion(datos) {
@@ -5810,83 +5789,57 @@ notaRegaloTexto.addEventListener(
 
 async function guardarNotaRegalo() {
 
-  const nota =
-  notaRegaloTexto.value.trim();
+  const nota = notaRegaloTexto.value.trim();
 
   if (!nota) {
-
     notaRegaloMensaje.textContent =
-    "Escribe unas palabras antes de enviar.";
-
+      "Escribe unas palabras antes de enviar.";
     notaRegaloTexto.focus();
     return;
   }
 
   botonEnviarNotaRegalo.disabled = true;
-
-  notaRegaloMensaje.textContent =
-  "Guardando tu nota...";
-
-  const callback =
-  "bodaNota_" +
-  Date.now();
-
-  const url =
-  API_URL +
-  "?accion=nota_regalo" +
-  "&codigo=" +
-  encodeURIComponent(codigo) +
-  "&nota=" +
-  encodeURIComponent(nota) +
-  "&callback=" +
-  callback +
-  "&t=" +
-  Date.now();
+  notaRegaloMensaje.textContent = "Guardando tu nota...";
 
   try {
+    const respuesta = await fetch(API_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "text/plain;charset=utf-8"
+      },
+      body: JSON.stringify({
+        action: "nota",
+        codigo: codigo,
+        nota: nota
+      })
+    });
 
-    const datos =
-    await consultaJSONP(
-      url,
-      callback,
-      10000
-    );
+    const datos = await respuesta.json();
 
     if (!datos || !datos.ok) {
-
       notaRegaloMensaje.textContent =
-      datos && datos.mensaje
-      ? datos.mensaje
-      : "No pudimos guardar tu nota. Inténtalo nuevamente.";
-
+        datos && datos.error
+        ? datos.error
+        : "No pudimos guardar tu nota. Inténtalo nuevamente.";
       botonEnviarNotaRegalo.disabled = false;
       return;
     }
 
     notaRegaloMensaje.textContent =
-    "Gracias por tus palabras 🤍 Tu nota ha sido guardada.";
-
-    estadoNotaRegalo.textContent =
-    "TU NOTA HA SIDO GUARDADA ♡";
-
-    botonAbrirNotaRegalo.textContent =
-    "EDITAR MI NOTA";
-
-    setTimeout(function () {
-      cerrarModalNotaRegalo();
-    }, 1600);
-
-  } catch (error) {
-
-    notaRegaloMensaje.textContent =
-    "No pudimos guardar tu nota. Revisa tu conexión e inténtalo nuevamente.";
-
-  } finally {
+      "Tu nota fue guardada. ¡Muchas gracias! ♡";
 
     botonEnviarNotaRegalo.disabled = false;
 
-  }
+    if (invitadoActual) {
+      invitadoActual.notaRegalo = nota;
+    }
 
+  } catch (error) {
+    console.error("Error guardando nota:", error);
+    notaRegaloMensaje.textContent =
+      "No pudimos guardar tu nota. Inténtalo nuevamente.";
+    botonEnviarNotaRegalo.disabled = false;
+  }
 }
 
 botonEnviarNotaRegalo.addEventListener(
