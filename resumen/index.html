@@ -490,8 +490,7 @@
     }
 
     .loading {
-      opacity: .55;
-      pointer-events: none;
+      /* La actualización ocurre en segundo plano sin bloquear el panel. */
     }
 
     .toast {
@@ -587,6 +586,32 @@
         grid-template-columns: 1fr;
       }
     }
+
+    .celea-signature {
+      display: block;
+      width: max-content;
+      max-width: calc(100% - 40px);
+      margin: 22px auto 0;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .13em;
+      text-decoration: none;
+      opacity: .72;
+      transition: opacity .18s ease, color .18s ease;
+    }
+
+    .celea-signature:hover,
+    .celea-signature:focus-visible {
+      color: var(--sage-dark);
+      opacity: 1;
+    }
+
+    .dashboard-signature {
+      margin-top: 26px;
+      margin-bottom: 8px;
+    }
+
   </style>
 </head>
 
@@ -615,6 +640,7 @@
         <p class="login-error" id="loginError"></p>
       </form>
     </div>
+    <a class="celea-signature" href="https://bycelea.com/" target="_blank" rel="noopener noreferrer" aria-label="Visitar by.celea">by.celea</a>
   </section>
 
   <main class="app hidden" id="dashboard">
@@ -708,6 +734,8 @@
         <span>Los datos se actualizan automáticamente.</span>
         <span id="updatedText">Actualizando…</span>
       </div>
+
+      <a class="celea-signature dashboard-signature" href="https://bycelea.com/" target="_blank" rel="noopener noreferrer" aria-label="Visitar by.celea">by.celea</a>
     </div>
   </main>
 
@@ -721,6 +749,17 @@
     let resumenActual = null;
     let listaActiva = "confirmados";
     let refreshTimer = null;
+
+    const AUSENCIA_MAX_MS = 5 * 60 * 1000;
+    let momentoOculto = null;
+
+    function cerrarSesionPorAusencia() {
+      limpiarSesion();
+      clearInterval(refreshTimer);
+      momentoOculto = null;
+      mostrarLogin();
+      $("loginError").textContent = "Por seguridad, vuelve a ingresar tu PIN.";
+    }
 
     const $ = (id) => document.getElementById(id);
 
@@ -1060,8 +1099,42 @@
     });
 
     document.addEventListener("visibilitychange", () => {
-      if (!document.hidden && obtenerToken()) {
+      if (document.hidden) {
+        momentoOculto = Date.now();
+        return;
+      }
+
+      if (momentoOculto !== null) {
+        const tiempoFuera = Date.now() - momentoOculto;
+        momentoOculto = null;
+
+        if (tiempoFuera >= AUSENCIA_MAX_MS) {
+          cerrarSesionPorAusencia();
+          return;
+        }
+      }
+
+      if (obtenerToken()) {
         cargarResumen(false);
+      }
+    });
+
+    /* Respaldo para móviles: si el navegador conserva la página en memoria
+       y vuelve mediante pageshow, también comprobamos el tiempo de ausencia. */
+    window.addEventListener("pagehide", () => {
+      if (momentoOculto === null) {
+        momentoOculto = Date.now();
+      }
+    });
+
+    window.addEventListener("pageshow", () => {
+      if (momentoOculto !== null) {
+        const tiempoFuera = Date.now() - momentoOculto;
+        momentoOculto = null;
+
+        if (tiempoFuera >= AUSENCIA_MAX_MS) {
+          cerrarSesionPorAusencia();
+        }
       }
     });
 
