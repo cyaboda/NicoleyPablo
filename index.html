@@ -3742,6 +3742,47 @@ input[placeholder*="acompanante" i]{
 }
 </style>
 
+
+<style id="fix-regalos-layout">
+/* Restaurar el flujo normal de Regalos sin perder los cambios nuevos */
+.regalos-seccion{
+  position:relative !important;
+  height:auto !important;
+  min-height:100vh !important;
+  overflow:hidden !important;
+  display:block !important;
+  box-sizing:border-box !important;
+}
+
+/* Partículas como fondo, sin ocupar espacio en el documento */
+.regalos-seccion .particulas-ambiente{
+  position:absolute !important;
+  inset:0 !important;
+  z-index:0 !important;
+  color:#66704d !important;
+  pointer-events:none !important;
+}
+.regalos-seccion > *:not(.particulas-ambiente){
+  position:relative;
+  z-index:2;
+}
+
+/* Los datos bancarios siguen en el popup, no desplegados en la página */
+.regalos-seccion .datos-transferencia,
+.regalos-seccion #datosTransferencia,
+.regalos-seccion .banco-datos,
+.regalos-seccion [class*="datos-banco"]{
+  display:none !important;
+}
+
+@media(max-width:700px){
+  .regalos-seccion{
+    height:auto !important;
+    min-height:100dvh !important;
+  }
+}
+</style>
+
 </head>
 
 <body>
