@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -455,6 +456,36 @@
       color: var(--sage-dark);
     }
 
+    .guest-actions {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid var(--line);
+    }
+
+    .copy-invite-btn {
+      border: 1px solid rgba(82,103,70,.16);
+      background: var(--sage-soft);
+      color: var(--sage-dark);
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: transform .16s ease, background .16s ease, opacity .16s ease;
+    }
+
+    .copy-invite-btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .copy-invite-btn.copied {
+      opacity: .78;
+    }
+
     .guest-extra {
       display: grid;
       gap: 6px;
@@ -760,6 +791,7 @@
 
   <script>
     const API_URL = 'https://script.google.com/macros/s/AKfycbzXSNzgk3bSv90zB5SsLWS5oLVP-yoQIomQK6evFzBwZ1ec49YWuo3D3m1Epov5L3ampg/exec';
+    const INVITATION_BASE_URL = "https://cyaboda.github.io/NicoleyPablo/";
     const TOKEN_KEY = "nicolepablo_panel_token";
     const EXPIRY_KEY = "nicolepablo_panel_expiry";
 
@@ -1034,10 +1066,67 @@
               <span class="guest-badge">${badge}</span>
             </div>
             ${extras.length ? '<div class="guest-extra">' + extras.join("") + '</div>' : ""}
+            <div class="guest-actions">
+              <button
+                class="copy-invite-btn"
+                type="button"
+                data-copy-code="${escapeHtml(item.codigo || "")}"
+                aria-label="Copiar invitación de ${escapeHtml(item.invitado || "Invitado")}">
+                Copiar invitación
+              </button>
+            </div>
           </article>
         `;
       }).join("");
     }
+
+    async function copiarInvitacion(codigo, boton) {
+      const codigoLimpio = String(codigo || "").trim();
+      if (!codigoLimpio) {
+        toast("No se encontró el código de la invitación.");
+        return;
+      }
+
+      const url = INVITATION_BASE_URL + encodeURIComponent(codigoLimpio);
+
+      try {
+        if (navigator.clipboard && window.isSecureContext) {
+          await navigator.clipboard.writeText(url);
+        } else {
+          const temporal = document.createElement("textarea");
+          temporal.value = url;
+          temporal.setAttribute("readonly", "");
+          temporal.style.position = "fixed";
+          temporal.style.opacity = "0";
+          document.body.appendChild(temporal);
+          temporal.select();
+          document.execCommand("copy");
+          temporal.remove();
+        }
+
+        const textoOriginal = boton.textContent;
+        boton.textContent = "✓ Copiada";
+        boton.classList.add("copied");
+        toast("Invitación copiada");
+
+        setTimeout(() => {
+          boton.textContent = textoOriginal;
+          boton.classList.remove("copied");
+        }, 1800);
+
+      } catch (_) {
+        toast("No se pudo copiar la invitación.");
+      }
+    }
+
+    document.addEventListener("click", (e) => {
+      const boton = e.target.closest("[data-copy-code]");
+      if (!boton) return;
+
+      e.preventDefault();
+      e.stopPropagation();
+      copiarInvitacion(boton.dataset.copyCode, boton);
+    });
 
     function escapeHtml(value) {
       return String(value ?? "")
