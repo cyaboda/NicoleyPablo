@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -456,12 +455,11 @@
       color: var(--sage-dark);
     }
 
-    .guest-actions {
+    .guest-top-actions {
+      flex: 0 0 auto;
       display: flex;
-      justify-content: flex-end;
-      margin-top: 12px;
-      padding-top: 12px;
-      border-top: 1px solid var(--line);
+      align-items: center;
+      gap: 8px;
     }
 
     .copy-invite-btn {
@@ -546,6 +544,23 @@
     .toast.show {
       opacity: 1;
       transform: translate(-50%, 0);
+    }
+
+
+    @media (max-width: 520px) {
+      .guest-top {
+        gap: 10px;
+      }
+
+      .guest-top-actions {
+        gap: 6px;
+      }
+
+      .copy-invite-btn {
+        padding: 7px 9px;
+        font-size: 9px;
+        letter-spacing: .055em;
+      }
     }
 
     @media (max-width: 650px) {
@@ -1063,18 +1078,18 @@
                 <div class="guest-name">${escapeHtml(item.invitado || "Invitado")}</div>
                 <div class="guest-meta">${escapeHtml(item.codigo || "")}</div>
               </div>
-              <span class="guest-badge">${badge}</span>
+              <div class="guest-top-actions">
+                <button
+                  class="copy-invite-btn"
+                  type="button"
+                  data-copy-code="${escapeHtml(item.codigo || "")}"
+                  aria-label="Copiar invitación de ${escapeHtml(item.invitado || "Invitado")}">
+                  Copiar invitación
+                </button>
+                <span class="guest-badge">${badge}</span>
+              </div>
             </div>
             ${extras.length ? '<div class="guest-extra">' + extras.join("") + '</div>' : ""}
-            <div class="guest-actions">
-              <button
-                class="copy-invite-btn"
-                type="button"
-                data-copy-code="${escapeHtml(item.codigo || "")}"
-                aria-label="Copiar invitación de ${escapeHtml(item.invitado || "Invitado")}">
-                Copiar invitación
-              </button>
-            </div>
           </article>
         `;
       }).join("");
