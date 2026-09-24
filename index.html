@@ -3760,6 +3760,50 @@ input[placeholder*="acompanante" i]{
 }
 </style>
 
+
+<style id="fix-regalos-centrado">
+/* Centrado definitivo de todo el contenido visible de Regalos */
+.regalos-seccion .regalos-contenido{
+  width:min(92vw, 760px) !important;
+  max-width:760px !important;
+  margin-left:auto !important;
+  margin-right:auto !important;
+  left:auto !important;
+  right:auto !important;
+  transform:none !important;
+  text-align:center !important;
+}
+
+/* Por si la versión usa wrappers alternativos */
+.regalos-seccion .regalos-inner,
+.regalos-seccion .regalos-wrapper{
+  margin-left:auto !important;
+  margin-right:auto !important;
+  left:auto !important;
+  right:auto !important;
+  transform:none !important;
+}
+
+/* Elementos principales centrados sin modificar el flujo vertical */
+.regalos-seccion .regalos-titulo,
+.regalos-seccion .regalos-texto,
+.regalos-seccion .regalos-linea,
+.regalos-seccion .banco-preview,
+.regalos-seccion .regalos-boton,
+.regalos-seccion .nota-regalo-pregunta{
+  margin-left:auto !important;
+  margin-right:auto !important;
+}
+
+/* El cierre también queda centrado */
+.regalos-seccion .regalos-cierre,
+.regalos-seccion .regalos-final{
+  text-align:center !important;
+  margin-left:auto !important;
+  margin-right:auto !important;
+}
+</style>
+
 </head>
 
 <body>
