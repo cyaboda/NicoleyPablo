@@ -3804,6 +3804,37 @@ input[placeholder*="acompanante" i]{
 }
 </style>
 
+
+<style id="fix-regalos-centrado-real">
+/* El problema real era que las ramas decorativas se habían convertido
+   accidentalmente en elementos del layout flex y empujaban el contenido. */
+.regalos-seccion .scroll-botanical{
+  position:absolute !important;
+  margin:0 !important;
+}
+
+/* Solo el contenido real participa en el centrado */
+.regalos-seccion .regalos-contenido{
+  position:relative !important;
+  z-index:5 !important;
+  width:100% !important;
+  max-width:1020px !important;
+  margin:0 auto !important;
+  left:auto !important;
+  right:auto !important;
+  transform:none !important;
+  text-align:center !important;
+}
+
+/* Las partículas siguen siendo una capa absoluta */
+.regalos-seccion .particulas-ambiente{
+  position:absolute !important;
+  inset:0 !important;
+  margin:0 !important;
+  pointer-events:none !important;
+}
+</style>
+
 </head>
 
 <body>
