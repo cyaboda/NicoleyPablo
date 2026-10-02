@@ -3855,6 +3855,113 @@ input[placeholder*="acompanante" i]{
     padding-top:7px !important;
   }
 }
+
+
+/* =========================================================
+   NICOLE & PABLO · LLUVIA DE SOBRES
+========================================================= */
+.regalos-sobres {
+  background:
+    radial-gradient(circle at 50% 42%, rgba(255,255,255,.72), rgba(255,255,255,0) 44%),
+    #F1F2EA !important;
+  color:#3B3223 !important;
+  overflow:hidden;
+}
+
+.regalos-sobres .sobres-contenido {
+  position:relative;
+  z-index:3;
+  width:min(720px, calc(100% - 48px));
+  margin:0 auto;
+  text-align:center;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  min-height:100%;
+  padding:74px 0 68px;
+  box-sizing:border-box;
+}
+
+.sobres-kicker {
+  font-family:Arial,sans-serif;
+  font-size:11px;
+  letter-spacing:.34em;
+  text-transform:uppercase;
+  color:#78654A;
+  margin-bottom:15px;
+}
+
+.regalos-sobres .sobres-titulo {
+  margin:0;
+  color:#3B3223 !important;
+  font-size:clamp(54px,6vw,86px);
+  line-height:.95;
+  font-weight:400;
+}
+
+.regalos-sobres .sobres-titulo span {
+  display:block;
+  margin-top:8px;
+  font-size:.58em;
+  font-style:italic;
+  font-weight:400;
+  color:#6F7137;
+}
+
+.sobres-separador {
+  width:72px;
+  height:1px;
+  background:rgba(120,101,74,.55);
+  margin:27px 0 22px;
+}
+
+.sobres-frase {
+  max-width:560px;
+  color:#6F7137;
+  font-family:Georgia,"Times New Roman",serif;
+  font-style:italic;
+  font-size:clamp(19px,2vw,25px);
+  line-height:1.45;
+}
+
+.sobre-ilustracion {
+  width:150px;
+  color:#6F7137;
+  margin:21px auto 18px;
+  opacity:.92;
+}
+
+.sobre-ilustracion svg { width:100%; height:auto; display:block; }
+
+.sobres-texto {
+  max-width:610px;
+  color:#3B3223;
+  font-size:15px;
+  line-height:1.9;
+  letter-spacing:.025em;
+}
+
+.sobres-cierre {
+  margin-top:28px;
+  color:#78654A;
+  font-family:Arial,sans-serif;
+  font-size:10px;
+  letter-spacing:.25em;
+  line-height:1.7;
+  text-transform:uppercase;
+}
+
+@media(max-width:700px) {
+  .regalos-sobres .sobres-contenido { width:min(88%,520px); padding:68px 0 58px; }
+  .sobres-kicker { font-size:9px; letter-spacing:.28em; margin-bottom:13px; }
+  .regalos-sobres .sobres-titulo { font-size:clamp(48px,15vw,66px); }
+  .sobres-separador { margin:22px 0 18px; width:58px; }
+  .sobres-frase { font-size:19px; line-height:1.45; max-width:330px; }
+  .sobre-ilustracion { width:128px; margin:18px auto 14px; }
+  .sobres-texto { max-width:350px; font-size:13px; line-height:1.78; }
+  .sobres-cierre { max-width:300px; margin-top:23px; font-size:8.5px; letter-spacing:.20em; }
+}
 </style>
 
 </head>
@@ -4189,74 +4296,30 @@ input[placeholder*="acompanante" i]{
 </section>
 
 
-<section class="regalos-seccion scroll-section" id="regalosSeccion"><div class="particulas-ambiente" aria-hidden="true"><i class="particula-ambiente" style="--x:6%;--y:10%;--s:8px;--o:0.22;--r:-28deg;--dx:22px;--dy:26px;--d:8s;--delay:-2s"></i><i class="particula-ambiente" style="--x:15%;--y:72%;--s:5px;--o:0.18;--r:18deg;--dx:-18px;--dy:-24px;--d:10s;--delay:-5s"></i><i class="particula-ambiente" style="--x:24%;--y:31%;--s:7px;--o:0.16;--r:48deg;--dx:20px;--dy:-18px;--d:11s;--delay:-7s"></i><i class="particula-ambiente" style="--x:34%;--y:84%;--s:9px;--o:0.14;--r:-42deg;--dx:-26px;--dy:-28px;--d:13s;--delay:-3s"></i><i class="particula-ambiente" style="--x:43%;--y:16%;--s:5px;--o:0.22;--r:25deg;--dx:16px;--dy:24px;--d:9s;--delay:-6s"></i><i class="particula-ambiente" style="--x:51%;--y:61%;--s:8px;--o:0.15;--r:-12deg;--dx:-18px;--dy:-26px;--d:12s;--delay:-9s"></i><i class="particula-ambiente" style="--x:61%;--y:27%;--s:6px;--o:0.18;--r:57deg;--dx:22px;--dy:-20px;--d:10s;--delay:-4s"></i><i class="particula-ambiente" style="--x:69%;--y:78%;--s:5px;--o:0.19;--r:-32deg;--dx:-18px;--dy:-22px;--d:9s;--delay:-8s"></i><i class="particula-ambiente" style="--x:77%;--y:12%;--s:8px;--o:0.15;--r:14deg;--dx:24px;--dy:28px;--d:13s;--delay:-10s"></i><i class="particula-ambiente" style="--x:84%;--y:52%;--s:6px;--o:0.21;--r:39deg;--dx:-22px;--dy:-25px;--d:11s;--delay:-5s"></i><i class="particula-ambiente" style="--x:92%;--y:24%;--s:5px;--o:0.17;--r:-55deg;--dx:-18px;--dy:22px;--d:10s;--delay:-7s"></i><i class="particula-ambiente" style="--x:95%;--y:86%;--s:8px;--o:0.13;--r:28deg;--dx:-24px;--dy:-30px;--d:14s;--delay:-11s"></i><i class="particula-ambiente" style="--x:11%;--y:44%;--s:4px;--o:0.18;--r:62deg;--dx:14px;--dy:-22px;--d:8s;--delay:-3s"></i><i class="particula-ambiente" style="--x:29%;--y:7%;--s:5px;--o:0.16;--r:-18deg;--dx:18px;--dy:18px;--d:10s;--delay:-8s"></i><i class="particula-ambiente" style="--x:56%;--y:91%;--s:6px;--o:0.17;--r:44deg;--dx:-20px;--dy:-28px;--d:12s;--delay:-6s"></i><i class="particula-ambiente" style="--x:73%;--y:43%;--s:4px;--o:0.2;--r:-47deg;--dx:16px;--dy:22px;--d:9s;--delay:-9s"></i><i class="particula-ambiente" style="--x:88%;--y:68%;--s:7px;--o:0.14;--r:21deg;--dx:-18px;--dy:-24px;--d:13s;--delay:-4s"></i><i class="particula-ambiente" style="--x:39%;--y:48%;--s:4px;--o:0.18;--r:-65deg;--dx:15px;--dy:18px;--d:9s;--delay:-10s"></i></div>
+<section class="regalos-seccion scroll-section regalos-sobres" id="regalosSeccion">
+  <div class="regalos-contenido sobres-contenido">
+    <div class="sobres-kicker">UN DETALLE PARA NOSOTROS</div>
+    <h2 class="regalos-titulo sobres-titulo">Lluvia <span>de sobres</span></h2>
+    <div class="sobres-separador"></div>
 
-  <div class="scroll-botanical botanica-izq">
-    <svg viewBox="0 0 260 540">
-      <path class="scroll-tallo" d="M20 540 C45 450 70 360 100 280 C135 190 165 110 225 10" />
-      <path class="scroll-rama" d="M70 360 C44 345 28 320 20 292" />
-      <path class="scroll-rama" d="M145 165 C170 150 190 125 200 98" />
-      <ellipse class="scroll-hoja" data-start=".22" cx="26" cy="286" rx="10" ry="23" />
-      <ellipse class="scroll-hoja" data-start=".55" cx="202" cy="92" rx="10" ry="22" />
-    </svg>
+    <div class="sobres-frase">El mejor regalo es compartir este día contigo.</div>
+
+    <div class="sobre-ilustracion" aria-hidden="true">
+      <svg viewBox="0 0 180 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="12" y="28" width="156" height="82" rx="5" stroke="currentColor" stroke-width="2"/>
+        <path d="M14 33L90 84L166 33" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M14 105L65 67" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+        <path d="M166 105L115 67" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+        <path d="M90 18C84 8 67 11 67 24C67 35 90 47 90 47C90 47 113 35 113 24C113 11 96 8 90 18Z" stroke="currentColor" stroke-width="1.8" fill="none"/>
+      </svg>
+    </div>
+
+    <div class="sobres-texto">
+      Si deseas tener un detalle con nosotros, el día de nuestra boda encontrarás un espacio especial donde podrás dejar un sobre con tu regalo en efectivo y, si deseas, acompañarlo con unas palabras para nosotros.
+    </div>
+
+    <div class="sobres-cierre">Gracias por acompañarnos en este nuevo comienzo.</div>
   </div>
-
-  <div class="scroll-botanical botanica-der">
-    <svg viewBox="0 0 250 520">
-      <path class="scroll-tallo" d="M238 0 C215 80 195 155 165 235 C135 315 95 415 22 520" />
-      <path class="scroll-rama" d="M185 185 C210 167 225 145 230 115" />
-      <path class="scroll-rama" d="M92 405 C68 385 55 360 52 330" />
-      <ellipse class="scroll-hoja" data-start=".3" cx="228" cy="110" rx="10" ry="22" />
-      <ellipse class="scroll-hoja" data-start=".65" cx="55" cy="325" rx="10" ry="23" />
-    </svg>
-  </div>
-
-  <div class="regalos-contenido">
-
-    <div class="regalos-icono">♡</div>
-    
-    <h2 class="regalos-titulo">Regalos</h2>
-
-    <div class="regalos-texto">
-      <strong>¿Un detalle para los novios?</strong><br>
-      Si deseas regalarnos algo, hemos elegido recibirlo mediante transferencia para seguir construyendo juntos esta nueva etapa.
-    </div>
-
-    <div class="regalos-linea"></div>
-
-    <div class="bancos-preview bancos-preview-publico">
-      <div class="banco-preview">
-        <div class="banco-icono">◇</div>
-        <div class="banco-preview-nombre">Banco Pichincha</div>
-        <div class="banco-preview-titular">NICOLE PINOS</div>
-      </div>
-    </div>
-    <button class="regalos-boton" id="abrirBancos" type="button" aria-expanded="false">VER DATOS PARA TRANSFERENCIA</button>
-    <div class="datos-publicos-regalo" id="datosPublicosRegalo" aria-hidden="true">
-      <div class="dato-publico"><span>TIPO DE CUENTA</span><strong>Cuenta de ahorros</strong></div>
-      <div class="dato-publico"><span>NÚMERO DE CUENTA</span><strong>2212909535</strong></div>
-      <div class="dato-publico"><span>TITULAR</span><strong>Nicole Pinos</strong></div>
-      <div class="dato-publico"><span>CI</span><strong>1720847357</strong></div>
-    </div>
-
-    <div class="regalo-nota-bloque">
-      <p class="regalo-nota-pregunta">
-        <span class="nota-regalo-pregunta">¿Deseas dejarnos una nota sobre tu regalo?</span>
-      </p>
-
-      <button class="regalo-nota-boton" id="abrirNotaRegalo" type="button">
-        DEJAR UNA NOTA
-      </button>
-
-      <div class="regalo-nota-estado" id="estadoNotaRegalo"></div>
-    </div>
-
-    <div class="regalos-nota">
-      GRACIAS POR ACOMPAÑARNOS EN ESTE NUEVO CAPÍTULO
-    </div>
-
-  </div>
-
 </section>
 
 
