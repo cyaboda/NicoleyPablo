@@ -3857,20 +3857,6 @@ input[placeholder*="acompanante" i]{
 }
 </style>
 
-
-<style>
-/* Lluvia de sobres · Nicole & Pablo */
-.lluvia-sobres-contenido{max-width:760px;margin:0 auto;text-align:center}
-.lluvia-sobres-texto{max-width:650px;margin-left:auto;margin-right:auto}
-.lluvia-sobre-ilustracion{position:relative;width:190px;height:150px;margin:26px auto 34px;display:flex;align-items:flex-end;justify-content:center}
-.lluvia-sobre-carta{position:absolute;top:0;width:126px;height:96px;border:1px solid rgba(111,113,55,.42);background:#f3f2ed;color:#6f7137;font-family:"Cormorant Garamond",Georgia,serif;font-size:22px;letter-spacing:.16em;padding-top:22px;box-sizing:border-box;transform:rotate(-2deg);z-index:1}
-.lluvia-sobre-cuerpo{position:absolute;bottom:0;width:178px;height:108px;border:1px solid rgba(111,113,55,.58);background:#f1f2ea;overflow:hidden;z-index:2}
-.lluvia-sobre-cuerpo:before,.lluvia-sobre-cuerpo:after{content:"";position:absolute;bottom:-54px;width:126px;height:126px;border:1px solid rgba(111,113,55,.36);transform:rotate(45deg);background:#f1f2ea}
-.lluvia-sobre-cuerpo:before{left:-63px}.lluvia-sobre-cuerpo:after{right:-63px}
-.lluvia-sobre-solapa{position:absolute;left:25px;top:-64px;width:126px;height:126px;border:1px solid rgba(111,113,55,.42);transform:rotate(45deg);background:#f1f2ea;z-index:3}
-.lluvia-sobre-corazon{position:absolute;left:50%;top:45px;transform:translateX(-50%);z-index:4;width:28px;height:28px;border:1px solid rgba(111,113,55,.55);border-radius:50%;display:grid;place-items:center;color:#6f7137;font-size:13px;background:#f1f2ea}
-@media(max-width:600px){.lluvia-sobres-texto{max-width:88%}.lluvia-sobre-ilustracion{transform:scale(.92);margin-top:18px;margin-bottom:24px}}
-</style>
 </head>
 
 <body>
@@ -4225,25 +4211,44 @@ input[placeholder*="acompanante" i]{
     </svg>
   </div>
 
-  <div class="regalos-contenido lluvia-sobres-contenido">
+  <div class="regalos-contenido">
 
     <div class="regalos-icono">♡</div>
+    
+    <h2 class="regalos-titulo">Regalos</h2>
 
-    <h2 class="regalos-titulo">Lluvia de sobres</h2>
-
-    <div class="regalos-texto lluvia-sobres-texto">
-      <strong>El mejor regalo es compartir este día contigo.</strong><br>
-      Si deseas tener un detalle con nosotros, el día de nuestra boda encontrarás un espacio especial donde podrás dejar un sobre con tu regalo en efectivo y, si deseas, acompañarlo con unas palabras para nosotros.
+    <div class="regalos-texto">
+      <strong>¿Un detalle para los novios?</strong><br>
+      Si deseas regalarnos algo, hemos elegido recibirlo mediante transferencia para seguir construyendo juntos esta nueva etapa.
     </div>
 
     <div class="regalos-linea"></div>
 
-    <div class="lluvia-sobre-ilustracion" aria-hidden="true">
-      <div class="lluvia-sobre-carta">N &amp; P</div>
-      <div class="lluvia-sobre-cuerpo">
-        <span class="lluvia-sobre-solapa"></span>
-        <span class="lluvia-sobre-corazon">♡</span>
+    <div class="bancos-preview bancos-preview-publico">
+      <div class="banco-preview">
+        <div class="banco-icono">◇</div>
+        <div class="banco-preview-nombre">Banco Pichincha</div>
+        <div class="banco-preview-titular">NICOLE PINOS</div>
       </div>
+    </div>
+    <button class="regalos-boton" id="abrirBancos" type="button" aria-expanded="false">VER DATOS PARA TRANSFERENCIA</button>
+    <div class="datos-publicos-regalo" id="datosPublicosRegalo" aria-hidden="true">
+      <div class="dato-publico"><span>TIPO DE CUENTA</span><strong>Cuenta de ahorros</strong></div>
+      <div class="dato-publico"><span>NÚMERO DE CUENTA</span><strong>2212909535</strong></div>
+      <div class="dato-publico"><span>TITULAR</span><strong>Nicole Pinos</strong></div>
+      <div class="dato-publico"><span>CI</span><strong>1720847357</strong></div>
+    </div>
+
+    <div class="regalo-nota-bloque">
+      <p class="regalo-nota-pregunta">
+        <span class="nota-regalo-pregunta">¿Deseas dejarnos una nota sobre tu regalo?</span>
+      </p>
+
+      <button class="regalo-nota-boton" id="abrirNotaRegalo" type="button">
+        DEJAR UNA NOTA
+      </button>
+
+      <div class="regalo-nota-estado" id="estadoNotaRegalo"></div>
     </div>
 
     <div class="regalos-nota">
