@@ -3855,6 +3855,37 @@ input[placeholder*="acompanante" i]{
     padding-top:7px !important;
   }
 }
+
+/* ===== LLUVIA DE SOBRES · NICOLE & PABLO ===== */
+.regalos-seccion{
+  background:
+    radial-gradient(circle at 18% 18%, rgba(143,144,96,.12), transparent 30%),
+    radial-gradient(circle at 82% 78%, rgba(120,101,74,.08), transparent 28%),
+    #F1F2EA !important;
+  color:#46513b !important;
+}
+.lluvia-sobres-contenido{max-width:760px!important;}
+.regalos-seccion .regalos-etiqueta{color:#6F7137!important;margin-bottom:10px;}
+.regalos-seccion .regalos-titulo{color:#3B3223!important;margin-top:4px;}
+.lluvia-sobre-icono{width:150px;height:112px;margin:18px auto 14px;color:#6F7137;}
+.lluvia-sobre-icono svg{width:100%;height:100%;overflow:visible;}
+.lluvia-sobre-icono rect,.lluvia-sobre-icono path{fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;}
+.lluvia-sobre-icono .lluvia-corazon{fill:#F1F2EA;stroke:#78654A;stroke-width:1.4;}
+.regalos-seccion .lluvia-sobres-texto{max-width:650px;color:#46513b!important;}
+.regalos-seccion .lluvia-sobres-texto strong{font-weight:400;color:#3B3223;}
+.regalos-seccion .regalos-linea{background:rgba(70,81,59,.28)!important;}
+.regalos-seccion .regalo-nota-bloque{border-top:1px solid rgba(70,81,59,.16)!important;}
+.regalos-seccion .regalo-nota-pregunta{color:#46513b!important;}
+.regalos-seccion .regalo-nota-boton{border-color:rgba(70,81,59,.38)!important;color:#46513b!important;}
+.regalos-seccion .regalo-nota-boton:hover{background:rgba(111,113,55,.08)!important;}
+.regalos-seccion .regalo-nota-estado{color:#6d765d!important;}
+.regalos-seccion .regalos-nota{color:#6F7137!important;}
+@media (max-width:600px){
+  .regalos-seccion{padding:34px 24px!important;}
+  .lluvia-sobre-icono{width:126px;height:96px;margin:14px auto 10px;}
+  .regalos-seccion .regalos-titulo{font-size:clamp(43px,13vw,58px)!important;}
+  .regalos-seccion .lluvia-sobres-texto{font-size:17px!important;line-height:1.5;}
+}
 </style>
 
 </head>
@@ -4211,37 +4242,31 @@ input[placeholder*="acompanante" i]{
     </svg>
   </div>
 
-  <div class="regalos-contenido">
+  <div class="regalos-contenido lluvia-sobres-contenido">
 
-    <div class="regalos-icono">♡</div>
-    
-    <h2 class="regalos-titulo">Regalos</h2>
+    <div class="regalos-etiqueta">UN DETALLE PARA NOSOTROS</div>
+    <h2 class="regalos-titulo">Lluvia de sobres</h2>
 
-    <div class="regalos-texto">
-      <strong>¿Un detalle para los novios?</strong><br>
-      Si deseas regalarnos algo, hemos elegido recibirlo mediante transferencia para seguir construyendo juntos esta nueva etapa.
+    <div class="lluvia-sobre-icono" aria-hidden="true">
+      <svg viewBox="0 0 180 130" role="img">
+        <rect x="22" y="36" width="136" height="78" rx="3"></rect>
+        <path d="M24 40 L90 88 L156 40"></path>
+        <path d="M24 111 L72 72"></path>
+        <path d="M156 111 L108 72"></path>
+        <path class="lluvia-corazon" d="M90 27 C84 18 68 21 68 33 C68 44 90 55 90 55 C90 55 112 44 112 33 C112 21 96 18 90 27 Z"></path>
+      </svg>
+    </div>
+
+    <div class="regalos-texto lluvia-sobres-texto">
+      <strong>El mejor regalo es compartir este día contigo.</strong><br><br>
+      Si deseas tener un detalle con nosotros, el día de nuestra boda encontrarás un espacio especial donde podrás dejar un sobre con tu regalo en efectivo y, si deseas, acompañarlo con unas palabras para nosotros.
     </div>
 
     <div class="regalos-linea"></div>
 
-    <div class="bancos-preview bancos-preview-publico">
-      <div class="banco-preview">
-        <div class="banco-icono">◇</div>
-        <div class="banco-preview-nombre">Banco Pichincha</div>
-        <div class="banco-preview-titular">NICOLE PINOS</div>
-      </div>
-    </div>
-    <button class="regalos-boton" id="abrirBancos" type="button" aria-expanded="false">VER DATOS PARA TRANSFERENCIA</button>
-    <div class="datos-publicos-regalo" id="datosPublicosRegalo" aria-hidden="true">
-      <div class="dato-publico"><span>TIPO DE CUENTA</span><strong>Cuenta de ahorros</strong></div>
-      <div class="dato-publico"><span>NÚMERO DE CUENTA</span><strong>2212909535</strong></div>
-      <div class="dato-publico"><span>TITULAR</span><strong>Nicole Pinos</strong></div>
-      <div class="dato-publico"><span>CI</span><strong>1720847357</strong></div>
-    </div>
-
     <div class="regalo-nota-bloque">
       <p class="regalo-nota-pregunta">
-        <span class="nota-regalo-pregunta">¿Deseas dejarnos una nota sobre tu regalo?</span>
+        <span class="nota-regalo-pregunta">¿Prefieres dejarnos también unas palabras por aquí?</span>
       </p>
 
       <button class="regalo-nota-boton" id="abrirNotaRegalo" type="button">
@@ -4869,40 +4894,24 @@ async function cargarInvitado() {
     return;
   }
 
-  const cargando = document.getElementById("cargando");
-
   try {
-    /*
-      Usamos JSONP en lugar de fetch. La invitación vive en
-      GitHub Pages y Apps Script ya soporta ?callback=...,
-      evitando bloqueos CORS entre ambos dominios.
-    */
-    const callbackNombre =
-      "__npInvitado_" + Date.now() + "_" +
-      Math.random().toString(36).slice(2);
-
-    const url =
+    const respuesta = await fetch(
       API_URL +
       "?action=invitado&codigo=" +
       encodeURIComponent(codigo) +
-      "&callback=" +
-      encodeURIComponent(callbackNombre) +
-      "&t=" + Date.now();
-
-    const datos = await consultaJSONP(
-      url,
-      callbackNombre,
-      15000
+      "&t=" + Date.now(),
+      { method: "GET", cache: "no-store" }
     );
 
+    const datos = await respuesta.json();
+
     if (!datos || !datos.ok || !datos.invitado) {
-      mostrarError(
-        (datos && (datos.mensaje || datos.error)) ||
-        "No pudimos cargar esta invitación."
-      );
+      mostrarError();
       return;
     }
 
+    /* Adaptamos la respuesta del backend Nicole & Pablo
+       al formato que ya utiliza visualmente la invitación. */
     recibirInvitado({
       ok: true,
       codigo: datos.invitado.codigo,
@@ -4910,20 +4919,13 @@ async function cargarInvitado() {
       cupos: datos.invitado.cupos,
       estado: datos.invitado.estado || "",
       asisten: datos.invitado.asisten || 0,
-      acompanantes: datos.invitado.acompanantes || "",
+      acompanantes: "",
       notaRegalo: datos.invitado.nota || ""
     });
 
   } catch (error) {
     console.error("Error cargando invitado:", error);
-
-    if (cargando) {
-      cargando.textContent = "No pudimos cargar la invitación.";
-    }
-
-    mostrarError(
-      'No pudimos cargar tu invitación.<br><button type="button" onclick="location.reload()" style="margin-top:14px;padding:11px 18px;border:1px solid currentColor;background:transparent;color:inherit;border-radius:999px;cursor:pointer;">INTENTAR DE NUEVO</button>'
-    );
+    mostrarError();
   }
 }
 
