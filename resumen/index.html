@@ -871,7 +871,8 @@
 
   <script defer src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
   <script>
-    const API_URL = 'https://script.google.com/macros/s/AKfycbzXSNzgk3bSv90zB5SsLWS5oLVP-yoQIomQK6evFzBwZ1ec49YWuo3D3m1Epov5L3ampg/exec';
+    const SUPABASE_URL = "https://vgoooyctkzvaeknrlzvu.supabase.co";
+    const SUPABASE_KEY = "sb_publishable_X8f3MFYjB1DFVKqo40xajA_6PA3AMFE";
     const INVITATION_BASE_URL = "https://nicoleypablo.date/";
     const TOKEN_KEY = "nicolepablo_panel_token";
     const EXPIRY_KEY = "nicolepablo_panel_expiry";
@@ -937,41 +938,44 @@
 
     const $ = (id) => document.getElementById(id);
 
-    function jsonp(params) {
-      return new Promise((resolve, reject) => {
-        const callback = "np_cb_" + Date.now() + "_" + Math.random().toString(36).slice(2);
-        const script = document.createElement("script");
+    async function supabaseRpc(funcion, parametros = {}) {
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), 12000);
 
-        const timeout = setTimeout(() => {
-          cleanup();
-          reject(new Error("La solicitud tardó demasiado."));
-        }, 15000);
+      try {
+        const respuesta = await fetch(
+          SUPABASE_URL + "/rest/v1/rpc/" + encodeURIComponent(funcion),
+          {
+            method: "POST",
+            headers: {
+              "apikey": SUPABASE_KEY,
+              "Content-Type": "application/json",
+              "Accept": "application/json"
+            },
+            body: JSON.stringify(parametros),
+            signal: controller.signal,
+            cache: "no-store"
+          }
+        );
 
-        function cleanup() {
-          clearTimeout(timeout);
-          delete window[callback];
-          script.remove();
+        const texto = await respuesta.text();
+        let data = null;
+        try { data = texto ? JSON.parse(texto) : null; } catch (_) {}
+
+        if (!respuesta.ok) {
+          const mensaje = data?.message || data?.hint || "No se pudo conectar con Supabase.";
+          throw new Error(mensaje);
         }
 
-        window[callback] = (data) => {
-          cleanup();
-          resolve(data);
-        };
-
-        const query = new URLSearchParams({
-          ...params,
-          callback,
-          _: Date.now()
-        });
-
-        script.src = API_URL + "?" + query.toString();
-        script.onerror = () => {
-          cleanup();
-          reject(new Error("No se pudo conectar con el servidor."));
-        };
-
-        document.body.appendChild(script);
-      });
+        return data;
+      } catch (error) {
+        if (error?.name === "AbortError") {
+          throw new Error("La solicitud tardó demasiado.");
+        }
+        throw error;
+      } finally {
+        clearTimeout(timeout);
+      }
     }
 
     function guardarSesion(token, segundos) {
@@ -1027,9 +1031,8 @@
       $("loginError").textContent = "";
 
       try {
-        const data = await jsonp({
-          accion: "panel_login",
-          pin: pin
+        const data = await supabaseRpc("panel_login", {
+          p_pin: pin
         });
 
         if (!data.ok) {
@@ -1067,9 +1070,8 @@
       $("refreshBtn").disabled = true;
 
       try {
-        const data = await jsonp({
-          accion: "resumen",
-          token: token
+        const data = await supabaseRpc("panel_resumen", {
+          p_token: token
         });
 
         if (token !== obtenerToken()) return;
@@ -1381,9 +1383,8 @@
 
       if (token) {
         try {
-          await jsonp({
-            accion: "panel_logout",
-            token: token
+          await supabaseRpc("panel_logout", {
+            p_token: token
           });
         } catch (_) {}
       }
