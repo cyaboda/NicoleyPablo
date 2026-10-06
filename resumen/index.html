@@ -721,6 +721,48 @@
     .sort-hint { width:100%; margin:0; color:var(--muted); font-size:12px; }
     .refresh-status { color:var(--text); font-size:12px; align-self:center; }
     @media (prefers-reduced-motion:reduce) { .loader-dots span { animation:none; } }
+
+    /* CELEA · administración de invitados. Mantiene la línea visual existente. */
+    .admin-row { display:flex; justify-content:center; margin:0 0 18px; }
+    .admin-add-btn {
+      border:1px solid var(--line); background:rgba(255,255,255,.72); color:var(--sage-dark);
+      border-radius:16px; padding:12px 17px; font-size:12px; font-weight:700;
+      letter-spacing:.04em; cursor:pointer; box-shadow:0 10px 24px rgba(44,50,38,.05);
+    }
+    .delete-invite-btn {
+      border:1px solid rgba(185,131,123,.22); background:var(--rose-soft); color:#8c5e57;
+      border-radius:999px; padding:8px 10px; font-size:10px; font-weight:700;
+      cursor:pointer; transition:transform .16s ease, opacity .16s ease;
+    }
+    .delete-invite-btn:hover { transform:translateY(-1px); }
+    .admin-modal {
+      position:fixed; inset:0; z-index:10000; display:grid; place-items:center;
+      padding:22px; background:rgba(35,48,31,.34); backdrop-filter:blur(7px);
+    }
+    .admin-modal-card {
+      width:min(100%,430px); background:var(--bg); border:1px solid rgba(255,255,255,.9);
+      border-radius:28px; box-shadow:0 24px 70px rgba(35,48,31,.18); padding:26px;
+    }
+    .admin-modal-head { display:flex; justify-content:space-between; gap:16px; align-items:center; margin-bottom:20px; }
+    .admin-modal-title { font-family:"Playfair Display",serif; font-size:28px; margin:0; color:var(--ink); }
+    .admin-close-btn { border:0; background:transparent; color:var(--muted); font-size:25px; cursor:pointer; padding:2px 6px; }
+    .admin-field { display:grid; gap:7px; margin-bottom:14px; }
+    .admin-field label { color:var(--text); font-size:12px; font-weight:700; }
+    .admin-field input {
+      width:100%; border:1px solid var(--line); background:#fff; color:var(--ink);
+      border-radius:14px; padding:13px 14px; outline:none;
+    }
+    .admin-field input:focus { border-color:var(--sage); box-shadow:0 0 0 4px rgba(125,145,109,.11); }
+    .admin-modal-actions { display:flex; gap:10px; margin-top:20px; }
+    .admin-modal-actions .primary-btn { flex:1; }
+    .admin-cancel-btn {
+      border:1px solid var(--line); background:rgba(255,255,255,.72); color:var(--text);
+      border-radius:17px; padding:14px 18px; font-weight:700; cursor:pointer;
+    }
+    @media (max-width:520px) {
+      .guest-top-actions { flex-wrap:wrap; justify-content:flex-end; }
+      .delete-invite-btn { padding:7px 9px; font-size:9px; }
+    }
   </style>
 </head>
 
@@ -840,6 +882,10 @@
         <button class="export-btn" id="exportExcelBtn" type="button">⇩ DESCARGAR LISTA DE ASISTENTES</button>
       </div>
 
+      <div class="admin-row">
+        <button class="admin-add-btn" id="addGuestBtn" type="button">＋ Agregar invitado</button>
+      </div>
+
       <section class="list-section hidden" id="listSection">
         <div class="list-head">
           <h2 class="list-title" id="listTitle">Confirmados</h2>
@@ -866,6 +912,35 @@
       <a class="celea-signature dashboard-signature" href="https://bycelea.com/" target="_blank" rel="noopener noreferrer" aria-label="Visitar by.celea"><span class="designed-by">Designed by.</span><span class="celea-name">Celea Studio</span></a>
     </div>
   </main>
+
+  <div class="admin-modal hidden" id="guestModal" role="dialog" aria-modal="true" aria-labelledby="guestModalTitle">
+    <form class="admin-modal-card" id="guestForm" autocomplete="off">
+      <div class="admin-modal-head">
+        <h2 class="admin-modal-title" id="guestModalTitle">Agregar invitado</h2>
+        <button class="admin-close-btn" id="closeGuestModalBtn" type="button" aria-label="Cerrar">×</button>
+      </div>
+
+      <div class="admin-field">
+        <label for="guestNameInput">Nombre del invitado</label>
+        <input id="guestNameInput" type="text" maxlength="120" required>
+      </div>
+
+      <div class="admin-field">
+        <label for="guestCodeInput">Código de invitación</label>
+        <input id="guestCodeInput" type="text" maxlength="80" autocapitalize="none" spellcheck="false" required>
+      </div>
+
+      <div class="admin-field">
+        <label for="guestSeatsInput">Cupos</label>
+        <input id="guestSeatsInput" type="number" min="1" max="20" value="1" required>
+      </div>
+
+      <div class="admin-modal-actions">
+        <button class="admin-cancel-btn" id="cancelGuestBtn" type="button">Cancelar</button>
+        <button class="primary-btn" id="saveGuestBtn" type="submit">Agregar</button>
+      </div>
+    </form>
+  </div>
 
   <div class="toast" id="toast"></div>
 
@@ -911,6 +986,33 @@
         return Number.isFinite(t) ? t : null;
       }
       return null;
+    }
+
+
+    function formatearFechaRespuesta(valor) {
+      if (!valor) return "";
+
+      const texto = String(valor).trim();
+
+      if (/^\d{4}-\d{2}-\d{2}T/.test(texto)) {
+        const fecha = new Date(texto);
+        if (!Number.isNaN(fecha.getTime())) {
+          const partes = new Intl.DateTimeFormat("es-EC", {
+            timeZone: "America/Guayaquil",
+            day: "2-digit",
+            month: "2-digit",
+            year: "numeric",
+            hour: "2-digit",
+            minute: "2-digit",
+            hour12: false
+          }).formatToParts(fecha);
+
+          const valorDe = tipo => partes.find(p => p.type === tipo)?.value || "";
+          return `${valorDe("day")}/${valorDe("month")}/${valorDe("year")} ${valorDe("hour")}:${valorDe("minute")}`;
+        }
+      }
+
+      return texto;
     }
 
     function ordenarInvitados(datos, tipo, orden = ordenLista) {
@@ -1146,7 +1248,7 @@
         "Cupos": Number(item.cupos || 0),
         "Asisten": Number(item.asisten || 0),
         "Acompañantes": item.acompanantes || "",
-        "Fecha de respuesta": item.fechaRespuesta || "",
+        "Fecha de respuesta": formatearFechaRespuesta(item.fechaRespuesta),
         "Nota de regalo": item.notaRegalo || ""
       }));
     }
@@ -1270,7 +1372,7 @@
         }
 
         if (item.fechaRespuesta && tipo !== "pendientes") {
-          extras.push("<div><strong>Respondió:</strong> " + escapeHtml(item.fechaRespuesta) + "</div>");
+          extras.push("<div><strong>Respondió:</strong> " + escapeHtml(formatearFechaRespuesta(item.fechaRespuesta)) + "</div>");
         }
 
         if (item.notaRegalo) {
@@ -1292,6 +1394,14 @@
                   aria-label="Copiar invitación de ${escapeHtml(item.invitado || "Invitado")}">
                   Copiar invitación
                 </button>
+                <button
+                  class="delete-invite-btn"
+                  type="button"
+                  data-delete-code="${escapeHtml(item.codigo || "")}"
+                  data-delete-name="${escapeHtml(item.invitado || "Invitado")}"
+                  aria-label="Eliminar a ${escapeHtml(item.invitado || "Invitado")}">
+                  Eliminar
+                </button>
                 <span class="guest-badge">${badge}</span>
               </div>
             </div>
@@ -1299,6 +1409,110 @@
           </article>
         `;
       }).join("");
+    }
+
+
+    function abrirModalInvitado() {
+      $("guestForm").reset();
+      $("guestSeatsInput").value = "1";
+      $("guestModal").classList.remove("hidden");
+      setTimeout(() => $("guestNameInput").focus(), 80);
+    }
+
+    function cerrarModalInvitado() {
+      $("guestModal").classList.add("hidden");
+    }
+
+    async function agregarInvitado() {
+      const token = obtenerToken();
+      if (!token) {
+        mostrarLogin();
+        return;
+      }
+
+      const nombre = $("guestNameInput").value.trim();
+      const codigo = $("guestCodeInput").value.trim();
+      const cupos = Number($("guestSeatsInput").value);
+
+      if (!nombre || !codigo || !Number.isInteger(cupos) || cupos < 1 || cupos > 20) {
+        toast("Revisa nombre, código y cupos.");
+        return;
+      }
+
+      $("saveGuestBtn").disabled = true;
+      $("saveGuestBtn").textContent = "Agregando…";
+
+      try {
+        const data = await supabaseRpc("panel_agregar_invitado", {
+          p_token: token,
+          p_nombre: nombre,
+          p_codigo: codigo,
+          p_cupos: cupos
+        });
+
+        if (!data?.ok) {
+          if (data?.codigoError === "SESION_INVALIDA") {
+            limpiarSesion();
+            cerrarModalInvitado();
+            mostrarLogin();
+            toast("La sesión venció. Ingresa nuevamente.");
+            return;
+          }
+          throw new Error(data?.mensaje || "No se pudo agregar el invitado.");
+        }
+
+        cerrarModalInvitado();
+        await cargarResumen(false);
+        renderLista("pendientes");
+        toast(data.mensaje || "Invitado agregado correctamente.");
+      } catch (error) {
+        toast(error.message || "No se pudo agregar el invitado.");
+      } finally {
+        $("saveGuestBtn").disabled = false;
+        $("saveGuestBtn").textContent = "Agregar";
+      }
+    }
+
+    async function eliminarInvitado(codigo, nombre, boton) {
+      const token = obtenerToken();
+      if (!token) {
+        mostrarLogin();
+        return;
+      }
+
+      const confirmado = window.confirm(
+        `¿Eliminar a ${nombre || "este invitado"}?\n\nSu invitación dejará de estar activa, pero el registro podrá recuperarse después.`
+      );
+      if (!confirmado) return;
+
+      boton.disabled = true;
+      const textoOriginal = boton.textContent;
+      boton.textContent = "…";
+
+      try {
+        const data = await supabaseRpc("panel_eliminar_invitado", {
+          p_token: token,
+          p_codigo: codigo
+        });
+
+        if (!data?.ok) {
+          if (data?.codigoError === "SESION_INVALIDA") {
+            limpiarSesion();
+            mostrarLogin();
+            toast("La sesión venció. Ingresa nuevamente.");
+            return;
+          }
+          throw new Error(data?.mensaje || "No se pudo eliminar el invitado.");
+        }
+
+        await cargarResumen(false);
+        renderLista(listaActiva);
+        toast(data.mensaje || "Invitado eliminado correctamente.");
+      } catch (error) {
+        boton.disabled = false;
+        boton.textContent = textoOriginal;
+        toast(error.message || "No se pudo eliminar el invitado.");
+      }
     }
 
     async function copiarInvitacion(codigo, boton) {
@@ -1341,12 +1555,24 @@
     }
 
     document.addEventListener("click", (e) => {
-      const boton = e.target.closest("[data-copy-code]");
-      if (!boton) return;
+      const botonCopiar = e.target.closest("[data-copy-code]");
+      if (botonCopiar) {
+        e.preventDefault();
+        e.stopPropagation();
+        copiarInvitacion(botonCopiar.dataset.copyCode, botonCopiar);
+        return;
+      }
 
-      e.preventDefault();
-      e.stopPropagation();
-      copiarInvitacion(boton.dataset.copyCode, boton);
+      const botonEliminar = e.target.closest("[data-delete-code]");
+      if (botonEliminar) {
+        e.preventDefault();
+        e.stopPropagation();
+        eliminarInvitado(
+          botonEliminar.dataset.deleteCode,
+          botonEliminar.dataset.deleteName,
+          botonEliminar
+        );
+      }
     });
 
     function escapeHtml(value) {
@@ -1414,6 +1640,20 @@
       ordenLista = e.target.value;
       try { localStorage.setItem("nicolepablo_panel_orden", ordenLista); } catch (_) {}
       renderLista(listaActiva);
+    });
+
+    $("addGuestBtn").addEventListener("click", abrirModalInvitado);
+    $("closeGuestModalBtn").addEventListener("click", cerrarModalInvitado);
+    $("cancelGuestBtn").addEventListener("click", cerrarModalInvitado);
+    $("guestForm").addEventListener("submit", (e) => {
+      e.preventDefault();
+      agregarInvitado();
+    });
+    $("guestModal").addEventListener("click", (e) => {
+      if (e.target === $("guestModal")) cerrarModalInvitado();
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && !$("guestModal").classList.contains("hidden")) cerrarModalInvitado();
     });
 
     $("refreshBtn").addEventListener("click", () => cargarResumen(true));
