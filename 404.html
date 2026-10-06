@@ -1,23 +1,40 @@
 <!doctype html>
 <html lang="es">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="robots" content="noindex">
-<title>Nicole & Pablo</title>
-<script>
-(function(){
-  var path=window.location.pathname.replace(/\/+$/,'');
-  var parts=path.split('/').filter(Boolean);
-  var codigo=parts.length>=2 ? parts[parts.length-1] : '';
-  if(codigo && codigo.toLowerCase()!=='index.html'){
-    var base='/'+parts[0]+'/';
-    window.location.replace(base+'?codigo='+encodeURIComponent(decodeURIComponent(codigo)));
-  }else{
-    window.location.replace('/NicoleyPablo/');
-  }
-})();
-</script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Nicole & Pablo</title>
+
+  <script>
+    (function () {
+      var path = window.location.pathname.replace(/^\/+|\/+$/g, "");
+      var parts = path.split("/").filter(Boolean);
+      var codigo = parts.length ? parts[parts.length - 1] : "";
+
+      if (codigo && codigo.toLowerCase() !== "index.html") {
+
+        // Guardamos el código para que index.html lo recupere.
+        sessionStorage.setItem(
+          "codigoInvitacion",
+          decodeURIComponent(codigo)
+        );
+
+        // Guardamos también la URL bonita para restaurarla después.
+        sessionStorage.setItem(
+          "rutaBonitaInvitacion",
+          "/" + codigo
+        );
+
+        // Con el dominio personalizado, index.html vive en la raíz.
+        window.location.replace("/");
+
+      } else {
+        window.location.replace("/");
+      }
+    })();
+  </script>
 </head>
+
 <body></body>
 </html>
